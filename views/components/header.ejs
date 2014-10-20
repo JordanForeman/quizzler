@@ -1,0 +1,31 @@
+<!doctype html>
+<html>
+<head>
+	<title>Quizzler - The Best Quiz Creation Engine</title>
+	<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css"> <!-- load bootstrap css -->
+	<link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css"> <!-- load fontawesome -->
+
+	<%if (pageType != null) { %>
+	<link rel="stylesheet" href="/css/pages/<%= pageType %>" type="text/css"/>
+	<% %>
+
+	<style>
+		body 		{ padding:20px; }
+	</style>
+
+	<script type="text/javascript" src="/js/jquery.min.js"></script>
+</head>
+<body>
+	
+	<header id="main-header" class="site-header">
+		<div class="logo">
+			<span class="logo-text">Quizzler</span>
+		</div>
+
+		<nav>
+			<ul class="navigation">
+				<li><a href="/login">Login</a></li>
+				<li><a href="/signup">Register</a></li>
+			</ul>
+		</nav>
+	</header>

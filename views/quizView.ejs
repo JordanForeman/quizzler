@@ -1,0 +1,11 @@
+<%- include components/header.ejs %>
+
+<link rel="stylesheet" type="text/css" href="/css/components/QuizView.css"/>
+
+<div>
+	<div class="socialscript"></div>
+	<script type="text/javascript" src="/js/QuizView.js"></script>
+	<script type="text/javascript">app.QuizView.init('.socialscript', "<%= quiz._id %>");</script>
+</div>
+
+<%- include components/footer.ejs %>

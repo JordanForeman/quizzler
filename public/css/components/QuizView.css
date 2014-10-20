@@ -1,0 +1,99 @@
+html, body {
+  overflow: hidden;
+  background: WHITE; }
+
+* {
+  box-sizing: border-box; }
+
+button:not(#progress) {
+  background-color: #1fabc5;
+  color: WHITE;
+  border: none;
+  margin: 10px auto;
+  padding: 20px 10px;
+  width: 90%; }
+  button:not(#progress):hover {
+    background-color: #115e6d; }
+
+#progress, .socialscript {
+  margin: 30px auto;
+  display: block; }
+
+h1, h2, h3 {
+  display: inline;
+  padding: 5px 10px;
+  line-height: 2em;
+  color: #000;
+  background: #FFF; }
+
+.socialscript {
+  max-width: 100%;
+  width: 800px;
+  height: 500px;
+  padding: 0; }
+
+.transition {
+  display: none;
+  height: 100%;
+  width: 100%;
+  border: 1px solid #AAA; }
+  .transition .header {
+    color: WHITE; }
+  .transition.active {
+    display: block; }
+  .transition .header, .transition .content {
+    padding: 20px 10px;
+    overflow: hidden; }
+  .transition * {
+    transition: all .2s linear; }
+  .transition.horizontal .header, .transition.horizontal .content {
+    float: left;
+    width: 50%;
+    height: 100%; }
+  .transition.horizontal.closing .header, .transition.horizontal.opening .header {
+    width: 0; }
+  .transition.horizontal.closing .content, .transition.horizontal.opening .content {
+    width: 100%; }
+  .transition.vertical .header, .transition.vertical .content {
+    width: 100%;
+    height: 50%; }
+  .transition.vertical.closing .header, .transition.vertical.opening .header {
+    height: 0; }
+  .transition.vertical.closing .content, .transition.vertical.opening .content {
+    height: 100%; }
+  .transition .header {
+    background-color: #000;
+    background-size: cover;
+    background-position: center; }
+
+.closing .header,
+.opening .header {
+  padding: 0; }
+
+.loader {
+  top: 28%; }
+
+.answers {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center; }
+  .answers li {
+    flex-grow: 1;
+    width: 50%; }
+    @media screen and (max-width: 420px) {
+      .answers li {
+        width: 100%; } }
+    .answers li button {
+      background-color: #1fabc5;
+      color: WHITE;
+      border: none;
+      margin: 10px auto;
+      padding: 20px 10px;
+      width: 90%;
+      display: block; }
+      .answers li button:hover {
+        background-color: #115e6d; }
+
+.closing .content *:not(.loader),
+.opening .content *:not(.loader) {
+  display: none; }

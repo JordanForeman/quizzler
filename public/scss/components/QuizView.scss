@@ -1,0 +1,131 @@
+html, body {overflow: hidden; background: WHITE;}
+* {box-sizing:border-box;}
+
+@mixin buttonSkin {
+    $background: rgb(31, 171, 197);
+    background-color: $background;
+    color: WHITE;      
+    border: none;
+
+    margin: 10px auto;
+    padding: 20px 10px;
+    width: 90%;
+
+    &:hover {
+      background-color: darken($background, 20);
+    }
+}
+
+button:not(#progress) {
+  @include buttonSkin;
+}
+
+#progress, .socialscript {
+  margin: 30px auto;
+  display: block;
+}
+
+h1, h2, h3 {
+  display: inline;
+  padding: 5px 10px;
+  line-height: 2em;
+  color: #000;
+  background: #FFF; 
+}
+
+.socialscript {
+  max-width: 100%;
+  width: 800px;
+  height: 500px;
+  padding: 0;
+}
+
+.transition {
+  display: none;
+  
+  height: 100%;
+  width: 100%;
+  border: 1px solid #AAA;
+  
+  .header {
+    color: WHITE;
+  }
+  
+  &.active {
+    display: block;
+  }
+  
+  .header, .content {
+    padding: 20px 10px;
+    overflow: hidden;
+  }
+  
+  * {
+    transition: all .2s linear;
+  }
+  
+  &.horizontal {
+    .header, .content {
+      float: left;
+      width: 50%;
+      height: 100%;
+    }
+  
+    &.closing, &.opening {
+      .header {width: 0; }
+      .content {width: 100%;}
+    }
+  }
+  
+  &.vertical {
+    .header, .content {
+      width: 100%;
+      height: 50%;
+    }
+    
+    &.closing, &.opening {
+      .header {height: 0;}
+      .content {height: 100%;}
+    }
+  }
+  
+  .header {
+    background-color: #000;
+    background-size: cover;
+    background-position: center;
+  }
+}
+
+.closing .header,
+.opening .header {
+  padding: 0;
+}
+
+.loader {
+  top: 28%;
+}
+
+.answers {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  
+  li {
+    flex-grow: 1;
+    width: 50%;
+    
+    @media screen and (max-width: 420px) {
+      width: 100%;
+    }
+    
+    button {
+      @include buttonSkin;
+      display: block;
+    }
+  }
+}
+
+.closing .content,
+.opening .content {
+  *:not(.loader) {display: none;}
+}
