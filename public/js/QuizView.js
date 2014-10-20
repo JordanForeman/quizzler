@@ -1,4 +1,5 @@
 var app = window.app || {};
+app.Social = app.Social || window.Social || {};
 
 app.QuizView = app.QuizView || {
 
@@ -8,6 +9,12 @@ app.QuizView = app.QuizView || {
 	decisions: [],
 	
 	init: function(selector, QuizId) {
+
+		// initialize social library
+		app.Social.init({
+			FACEBOOK_APP_ID: '670211293040806',
+			TWITTER_ACCOUNT: 'jordanforeman'
+		});
 
 		this.element = $(selector);
 		this.loadData(QuizId, this.generateQuiz);
@@ -23,19 +30,19 @@ app.QuizView = app.QuizView || {
 	},
 
 	getFirstScreen: function() {
-		return $(this.element).find('ul li:first-of-type');
+		return $(this.element).find('> ul li:first-of-type').first();
 	},
 
 	getLastScreen: function() {
-		return $(this.element).find('ul li:last-of-type');
+		return $(this.element).find('> ul li:last-of-type').first();
 	},
 
 	getCurrentScreen: function() {
-		return $(this.element).find('ul li.active');
+		return $(this.element).find('> ul li.active').first();
 	},
 
 	getNextScreen: function() {
-		var nextScreen = $(this.element).find('ul li.active').nextElementSibling;
+		var nextScreen = $(this.element).find('> ul li.active').next();
 
 		if (!nextScreen) {
 			return this.getFirstScreen();
@@ -61,37 +68,36 @@ app.QuizView = app.QuizView || {
 
 	generateQuizHTML: function() {
 
-		// Quiz Screen List Container
-		var Screens = document.createElement('ul');
+		// Quiz String
+		var QuizHTMLString = '';
 
 		// Landing
-		var landingHTMLString = '<li class="transition horizontal active"><section id="landingHeader" class="header"><h1>';
-			landingHTMLString+= this.quizData.title + '</h1></section><section class="content">';
-			landingHTMLString+= this.quizData.description + '<button id="takeQuizButton">';
-			landingHTMLString+= this.quizData.startPrompt + '</button></section></li>';
-		$(this.element).append(landingHTMLString);
+		QuizHTMLString += '<ul><li class="transition horizontal active"><section id="landingHeader" class="header"><h1>';
+		QuizHTMLString += this.quizData.title + '</h1></section><section class="content">';
+		QuizHTMLString += this.quizData.description + '<button id="takeQuizButton">';
+		QuizHTMLString += this.quizData.startPrompt + '</button></section></li>';
 
 		// Questions
 		[].forEach.call(this.quizData.questions, function(question){
 
-			var questionHTMLString = '<li class="transition vertical"><section id="" class="header"><h2>';
-				questionHTMLString+= question.description + '</h2></section><section class="content"><ul class="answers">';
+			QuizHTMLString += '<li class="transition vertical"><section id="" class="header"><h2>';
+			QuizHTMLString += question.description + '</h2></section><section class="content"><ul class="answers">';
 
-				[].forEach.call(question.choices, function(choice){
-					questionHTMLString+= '<li data-answer="';
-					questionHTMLString+= choice.value + '"><button>';
-					questionHTMLString+= choice.description + '</button></li>';
-				});
+			[].forEach.call(question.choices, function(choice){
+				QuizHTMLString += '<li data-answer="';
+				QuizHTMLString += choice.value + '"><button>';
+				QuizHTMLString += choice.description + '</button></li>';
+			});
 
-				questionHTMLString+= '</ul></section></li>';
-			$(app.QuizView.element).append(questionHTMLString);
+			QuizHTMLString += '</ul></section></li>';
 
 		});
 
 		// Ending Slide
-		var endingHTMLString = '<li class="transition horizontal results"><section id="resultHeader" class="header"><h2 id="quizResultTitle"></h2></section><section class="content"><div id="quizResultContents"></div><button id="retakeQuizButton">'
-			endingHTMLString+= this.quizData.restartPrompt + '</button>/section></li>';
-		$(this.element).append(endingHTMLString);
+		QuizHTMLString += '<li class="transition horizontal results"><section id="resultHeader" class="header"><h2 id="quizResultTitle"></h2></section><section class="content"><div id="quizResultContents"></div><div class="social"><ul class="social-toolbar"><li class="share-facebook"><span class="icon-facebook"></span> Share </li><li class="share-pinterest"><span class="icon-pinterest"></span> Pin </li><li class="share-twitter"><span class="icon-twitter"></span> Tweet </li></ul></div><button id="retakeQuizButton">'
+		QuizHTMLString += this.quizData.restartPrompt + '</button></section></li></ul>';
+		
+		$(this.element).append(QuizHTMLString);
 
 	},
 
@@ -103,10 +109,16 @@ app.QuizView = app.QuizView || {
 		$('.answers li').click(app.QuizView.answerQuestion);
 		$('#takeQuizButton').click(app.QuizView.startQuiz.bind(this));
 		$('#retakeQuizButton').click(app.QuizView.retakeQuiz.bind(this));
+
+		// Social Sharing
+		$('.share-facebook').click(app.Social.Facebook.shareEvent);
+		$('.share-pinterest').click(app.Social.Pinterest.shareEvent);
+		$('.share-twitter').click(app.Social.Twitter.shareEvent);
+		$('.share-google-plus').click(app.Social.GooglePlus.shareEvent);
 	},
 
 	answerQuestion: function() {
-		var answer = $(this).data('value');
+		var answer = $(this).data('answer');
 		app.QuizView.decisions.push(answer);
 		app.QuizView.progressQuiz();
 	},
@@ -120,18 +132,20 @@ app.QuizView = app.QuizView || {
 		$(this.getCurrentScreen()).find('.loader').remove();
 	},
 
-	getResults: function(results) {
+	getResults: function() {
 		switch(this.quizData.scoringModel) {
 			case "mostcommon":
-				return this.getMostCommon(results)
+				return this.getMostCommon()
 				break;
 			default: 
 				break;
 		}
 	},
 
-	getMostCommon: function(results) {
-		var counts = {};
+	getMostCommon: function() {
+		var counts = {},
+			results = this.quizData.results;
+
 		for(var index = 0; index < this.decisions.length; index++) {
 		  if(this.decisions[index] in counts) {
 			counts[this.decisions[index]]++;
@@ -165,6 +179,11 @@ app.QuizView = app.QuizView || {
 		$('#quizResultTitle').html(result['title']);
 		$('#quizResultContents').html(result['description']);
 
+		// Set social share data
+		$('.share-pinterest').attr('data-media-url', result['image']).attr('data-share-description', result['description']);
+		$('.share-facebook').attr('data-media-url', result['image']).attr('data-share-description', result['description']).attr('data-share-title', result['title']);
+		$('.share-twitter').attr('data-share-description', result['description']);
+
 	},
 
 	progressQuiz: function() {
@@ -178,18 +197,18 @@ app.QuizView = app.QuizView || {
 			$(currentScreen).removeClass('closing').removeClass('active');
 			$(nextScreen).addClass('opening').addClass('active');
 
-			this.addLoader(currentScreen);
+			// this.addLoader(currentScreen);
 			setTimeout(this.progressQuiz.bind(this), 1000);
 
 		} else if($(currentScreen).hasClass('opening')) {
 
 			if ($(currentScreen).hasClass('results')) {
-				var result = this.getResult();
+				var result = this.getResults();
 				this.finishQuiz(result);
 			}
 
 			$(currentScreen).removeClass('opening');
-			this.removeLoader(currentScreen);
+			// this.removeLoader(currentScreen);
 
 		} else {
 			$(currentScreen).addClass('closing');

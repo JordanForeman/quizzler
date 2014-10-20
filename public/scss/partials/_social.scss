@@ -1,0 +1,77 @@
+$facebook-color: #4b68b9;
+$pinterest-color: #ce2029;
+$email-color: #28a2ad;
+$twitter-color: #00b0ed;
+$google-plus-color: #dd4c39;
+
+$touch-size: 44px;
+$breakpoint: 650px;
+$shadow-height: 3px;
+
+.social-toolbar {
+  max-width: 900px;
+  
+  list-style-type: none;
+  padding: 0 10px;
+  
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: space-around;
+  
+  li {
+    position: relative;
+    color: WHITE;
+    height: $touch-size;
+    line-height: $touch-size;
+    margin: 0 5px;
+    min-width: $touch-size;
+    border-bottom: $shadow-height solid;
+    text-align: center;
+    font-family: Montserrat;
+    font-size: 1.2em;
+    flex-grow: 1;
+    overflow: hidden;
+    cursor: pointer;
+    
+    @media screen and (max-width: $breakpoint) {
+      margin: 0;
+      width: $touch-size;
+    }
+    
+    span {
+      float: left;
+      padding: 0 10px;
+      
+      @media screen and (max-width: $breakpoint) {
+        float: none;
+        padding: 0;
+        margin-right: 9999px;
+      }
+      
+      &:before {
+        font-size: 1.5em;
+        line-height: $touch-size;
+      }
+    }
+  }
+  
+  .share-facebook {
+    background: $facebook-color;
+    border-color: darken($facebook-color, 20);
+  }
+  
+  .share-pinterest {
+    background: $pinterest-color;
+    border-color: darken($pinterest-color, 20);
+  }
+  
+  .share-twitter {
+    background: $twitter-color;
+    border-color: darken($twitter-color, 20);
+  }
+  
+  .share-google-plus {
+    background: $google-plus-color;
+    border-color: darken($google-plus-color, 20);
+  }
+}

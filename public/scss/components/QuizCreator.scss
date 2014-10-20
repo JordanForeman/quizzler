@@ -1,0 +1,101 @@
+$lightBlue: rgb(52, 182, 255);
+
+#quizEditor {
+
+	display: flex;
+	// flex-direction: column;
+	flex-wrap: nowrap;
+	justify-content: flex-start;
+
+  hr {
+  	margin: 10px 0;
+  }
+  
+  .modal {
+	display: none;
+  }
+  
+  .editor-panel {
+	
+	display: inline-block;
+	
+	&.editor-panel-slides {
+	
+	  .slides {
+		list-style-type: none;
+		padding: 0 10px;
+		
+		.slide {
+		  cursor: pointer;
+		  position: relative;
+		  display: block;
+		  padding: 5px;
+		  margin-bottom: 10px;
+		  
+		  font-size: .8em;
+		  color: WHITE;
+		  border: 2px solid transparent;
+		  
+		  &.slide-active {
+			.thumb:before{background: rgba(0, 0, 0, 0);}
+			border-color: $lightBlue;
+		  }
+		  
+		  &:not(.slide-active) {
+			&:hover {
+			  border-color: lighten($lightBlue, 20);
+			  .thumb:before {background: rgba(0, 0, 0, 0);}
+			}
+		  }
+		  
+		  &.slide-button {
+			.thumb {
+			  background-image: url('http://placehold.it/150x150');
+			}
+		  }
+		  
+		  .thumb {
+			position: relative;
+			
+			height: 100px;
+			width: 100px;
+		  
+			background-image: url('http://placekitten.com/150/150');
+			background-size: cover;
+			
+			span {
+			  position: absolute;
+			  display: block;
+			  bottom: 5px;
+			  left: 5px;
+			}
+		  
+			&:before {
+			  content: '';
+			  display: block;
+			  height: 100%;
+			  width: 100%;
+			  background: rgba(0, 0, 0, .5);
+			  
+			  transition: background .2s linear;
+			}
+		  }
+		  
+		  &:after {
+		  }
+		  
+		}
+	  }
+	  
+	}
+	
+	&.editor-panel-editor {
+
+		& > div:not(.editor-active) {
+			display: none;
+		}
+	}
+	
+  }
+  
+}

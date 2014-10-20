@@ -1,0 +1,52 @@
+#quizEditor {
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: flex-start; }
+  #quizEditor hr {
+    margin: 10px 0; }
+  #quizEditor .modal {
+    display: none; }
+  #quizEditor .editor-panel {
+    display: inline-block; }
+    #quizEditor .editor-panel.editor-panel-slides .slides {
+      list-style-type: none;
+      padding: 0 10px; }
+      #quizEditor .editor-panel.editor-panel-slides .slides .slide {
+        cursor: pointer;
+        position: relative;
+        display: block;
+        padding: 5px;
+        margin-bottom: 10px;
+        font-size: .8em;
+        color: WHITE;
+        border: 2px solid transparent; }
+        #quizEditor .editor-panel.editor-panel-slides .slides .slide.slide-active {
+          border-color: #34b6ff; }
+          #quizEditor .editor-panel.editor-panel-slides .slides .slide.slide-active .thumb:before {
+            background: rgba(0, 0, 0, 0); }
+        #quizEditor .editor-panel.editor-panel-slides .slides .slide:not(.slide-active):hover {
+          border-color: #9adbff; }
+          #quizEditor .editor-panel.editor-panel-slides .slides .slide:not(.slide-active):hover .thumb:before {
+            background: rgba(0, 0, 0, 0); }
+        #quizEditor .editor-panel.editor-panel-slides .slides .slide.slide-button .thumb {
+          background-image: url("http://placehold.it/150x150"); }
+        #quizEditor .editor-panel.editor-panel-slides .slides .slide .thumb {
+          position: relative;
+          height: 100px;
+          width: 100px;
+          background-image: url("http://placekitten.com/150/150");
+          background-size: cover; }
+          #quizEditor .editor-panel.editor-panel-slides .slides .slide .thumb span {
+            position: absolute;
+            display: block;
+            bottom: 5px;
+            left: 5px; }
+          #quizEditor .editor-panel.editor-panel-slides .slides .slide .thumb:before {
+            content: '';
+            display: block;
+            height: 100%;
+            width: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            transition: background .2s linear; }
+    #quizEditor .editor-panel.editor-panel-editor > div:not(.editor-active) {
+      display: none; }

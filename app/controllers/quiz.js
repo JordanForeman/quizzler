@@ -4,7 +4,7 @@ var router = require('express').Router(),
 	Question = require('../models/question');
 
 router.get('/new', function(req, res){
-	res.render('createQuiz.ejs');
+	res.render('createQuiz2.ejs');
 });
 
 router.get('/:id', function(req, res, next){

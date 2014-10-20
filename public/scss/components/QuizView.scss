@@ -1,3 +1,5 @@
+@import "public/scss/partials/social";
+
 html, body {overflow: hidden; background: WHITE;}
 * {box-sizing:border-box;}
 
@@ -34,10 +36,17 @@ h1, h2, h3 {
 }
 
 .socialscript {
-  max-width: 100%;
-  width: 800px;
-  height: 500px;
-  padding: 0;
+
+  ul {
+    list-style-type: none;
+    padding: 0;
+  }
+
+  & > ul {
+    max-width: 100%;
+    width: 800px;
+    height: 500px;
+  }
 }
 
 .transition {
