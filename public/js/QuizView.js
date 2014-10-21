@@ -44,7 +44,7 @@ app.QuizView = app.QuizView || {
 	getNextScreen: function() {
 		var nextScreen = $(this.element).find('> ul li.active').next();
 
-		if (!nextScreen) {
+		if (!nextScreen.length) {
 			return this.getFirstScreen();
 		}
 
@@ -81,7 +81,7 @@ app.QuizView = app.QuizView || {
 		[].forEach.call(this.quizData.questions, function(question){
 
 			QuizHTMLString += '<li class="transition vertical"><section id="" class="header"><h2>';
-			QuizHTMLString += question.description + '</h2></section><section class="content"><ul class="answers">';
+			QuizHTMLString += question.title + '</h2></section><section class="content"><ul class="answers">';
 
 			[].forEach.call(question.choices, function(choice){
 				QuizHTMLString += '<li data-answer="';
@@ -124,8 +124,9 @@ app.QuizView = app.QuizView || {
 	},
 
 	addLoader: function(screen) {
-		var loader = '<div class="loader"></div>';
-		$(this.getCurrentScreen()).html(loader);
+		var loader = '<div class="loader"></div>',
+			container = $(this.getCurrentScreen()).find('.content');
+		$(container).append(loader);
 	},
 
 	removeLoader: function(screen) {
@@ -170,7 +171,36 @@ app.QuizView = app.QuizView || {
 		  }
 		}
 		
-		return chosenResult;
+		return chosenResult || {};
+	},
+
+	getRangedResult: function() {
+		
+		var pointTotal = 0;
+		[].forEach.call(this.decisions, function(decision){
+			pointTotal += decision;
+		});
+
+		var bestResult = null;
+		[].forEach.call(this.quizData.results, function(result){
+
+			var min = result.threshold.min,
+				max = result.threshold.max;
+
+			// Perfect Match!
+			if (pointTotal > min && pointTotal < max)
+				return result;
+
+			// Better at least have one
+			if (!bestResult)
+				bestResult = result;
+
+			// We've got a good result, but is it the best?
+			// TODO: narrow down results
+		});
+
+		return bestResult;
+
 	},
 
 	finishQuiz: function(result) {
@@ -197,7 +227,7 @@ app.QuizView = app.QuizView || {
 			$(currentScreen).removeClass('closing').removeClass('active');
 			$(nextScreen).addClass('opening').addClass('active');
 
-			// this.addLoader(currentScreen);
+			this.addLoader(currentScreen);
 			setTimeout(this.progressQuiz.bind(this), 1000);
 
 		} else if($(currentScreen).hasClass('opening')) {
@@ -208,7 +238,7 @@ app.QuizView = app.QuizView || {
 			}
 
 			$(currentScreen).removeClass('opening');
-			// this.removeLoader(currentScreen);
+			this.removeLoader(currentScreen);
 
 		} else {
 			$(currentScreen).addClass('closing');

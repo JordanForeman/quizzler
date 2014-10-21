@@ -26,6 +26,15 @@ module.exports = function(grunt) {
 			}
 		},
 
+		compass: {
+			dist: {
+				options: {
+					sassDir: './public/scss',
+					cssDir: './public/css'
+				}
+			}
+		},
+
 		watch: {
 			scripts: {
 				files: ['/public/scss/**/*.scss'],
@@ -41,10 +50,11 @@ module.exports = function(grunt) {
 	grunt.loadNpmTasks('grunt-nodemon');
 	grunt.loadNpmTasks('grunt-contrib-sass');
 	grunt.loadNpmTasks('grunt-contrib-watch');
+	grunt.loadNpmTasks('grunt-contrib-compass');
 
 	grunt.registerTask('default', ['sass']);
 	grunt.registerTask('debug', ['watch', 'nodemon']);
-	grunt.registerTask('compile', ['sass']);
+	grunt.registerTask('compile', ['compass']);
 	grunt.registerTask('watch', ['sass', 'watch']);
 
 };

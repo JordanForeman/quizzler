@@ -1,150 +1,446 @@
+/* line 11, ../../scss/partials/_social.scss */
 .social-toolbar {
   max-width: 900px;
   list-style-type: none;
   padding: 0 10px;
   display: flex;
   flex-wrap: nowrap;
-  justify-content: space-around; }
+  justify-content: space-around;
+}
+/* line 21, ../../scss/partials/_social.scss */
+.social-toolbar li {
+  position: relative;
+  color: WHITE;
+  height: 44px;
+  line-height: 44px;
+  margin: 0 5px;
+  min-width: 44px;
+  border-bottom: 3px solid;
+  text-align: center;
+  font-family: Montserrat;
+  font-size: 1.2em;
+  flex-grow: 1;
+  overflow: hidden;
+  cursor: pointer;
+}
+@media screen and (max-width: 650px) {
+  /* line 21, ../../scss/partials/_social.scss */
   .social-toolbar li {
-    position: relative;
-    color: WHITE;
-    height: 44px;
-    line-height: 44px;
-    margin: 0 5px;
-    min-width: 44px;
-    border-bottom: 3px solid;
-    text-align: center;
-    font-family: Montserrat;
-    font-size: 1.2em;
-    flex-grow: 1;
-    overflow: hidden;
-    cursor: pointer; }
-    @media screen and (max-width: 650px) {
-      .social-toolbar li {
-        margin: 0;
-        width: 44px; } }
-    .social-toolbar li span {
-      float: left;
-      padding: 0 10px; }
-      @media screen and (max-width: 650px) {
-        .social-toolbar li span {
-          float: none;
-          padding: 0;
-          margin-right: 9999px; } }
-      .social-toolbar li span:before {
-        font-size: 1.5em;
-        line-height: 44px; }
-  .social-toolbar .share-facebook {
-    background: #4b68b9;
-    border-color: #2c3f72; }
-  .social-toolbar .share-pinterest {
-    background: #ce2029;
-    border-color: #761217; }
-  .social-toolbar .share-twitter {
-    background: #00b0ed;
-    border-color: #006487; }
-  .social-toolbar .share-google-plus {
-    background: #dd4c39;
-    border-color: #96281a; }
+    margin: 0;
+    width: 44px;
+  }
+}
+/* line 41, ../../scss/partials/_social.scss */
+.social-toolbar li span {
+  float: left;
+  padding: 0 10px;
+}
+@media screen and (max-width: 650px) {
+  /* line 41, ../../scss/partials/_social.scss */
+  .social-toolbar li span {
+    float: none;
+    padding: 0;
+    margin-right: 9999px;
+  }
+}
+/* line 51, ../../scss/partials/_social.scss */
+.social-toolbar li span:before {
+  font-size: 1.5em;
+  line-height: 44px;
+}
+/* line 58, ../../scss/partials/_social.scss */
+.social-toolbar .share-facebook {
+  background: #4b68b9;
+  border-color: #2c3f72;
+}
+/* line 63, ../../scss/partials/_social.scss */
+.social-toolbar .share-pinterest {
+  background: #ce2029;
+  border-color: #761217;
+}
+/* line 68, ../../scss/partials/_social.scss */
+.social-toolbar .share-twitter {
+  background: #00b0ed;
+  border-color: #006487;
+}
+/* line 73, ../../scss/partials/_social.scss */
+.social-toolbar .share-google-plus {
+  background: #dd4c39;
+  border-color: #96281a;
+}
 
+@-webkit-keyframes spin {
+  /* line 17, ../../scss/partials/_spinner.sass */
+  0% {
+    -webkit-transform: rotate(0deg);
+    -moz-transform: rotate(0deg);
+    -ms-transform: rotate(0deg);
+    -o-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+
+  /* line 20, ../../scss/partials/_spinner.sass */
+  100% {
+    -webkit-transform: rotate(-2160deg);
+    -moz-transform: rotate(-2160deg);
+    -ms-transform: rotate(-2160deg);
+    -o-transform: rotate(-2160deg);
+    transform: rotate(-2160deg);
+  }
+}
+
+@-moz-keyframes spin {
+  /* line 17, ../../scss/partials/_spinner.sass */
+  0% {
+    -webkit-transform: rotate(0deg);
+    -moz-transform: rotate(0deg);
+    -ms-transform: rotate(0deg);
+    -o-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+
+  /* line 20, ../../scss/partials/_spinner.sass */
+  100% {
+    -webkit-transform: rotate(-2160deg);
+    -moz-transform: rotate(-2160deg);
+    -ms-transform: rotate(-2160deg);
+    -o-transform: rotate(-2160deg);
+    transform: rotate(-2160deg);
+  }
+}
+
+@-ms-keyframes spin {
+  /* line 17, ../../scss/partials/_spinner.sass */
+  0% {
+    -webkit-transform: rotate(0deg);
+    -moz-transform: rotate(0deg);
+    -ms-transform: rotate(0deg);
+    -o-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+
+  /* line 20, ../../scss/partials/_spinner.sass */
+  100% {
+    -webkit-transform: rotate(-2160deg);
+    -moz-transform: rotate(-2160deg);
+    -ms-transform: rotate(-2160deg);
+    -o-transform: rotate(-2160deg);
+    transform: rotate(-2160deg);
+  }
+}
+
+@keyframes spin {
+  /* line 17, ../../scss/partials/_spinner.sass */
+  0% {
+    -webkit-transform: rotate(0deg);
+    -moz-transform: rotate(0deg);
+    -ms-transform: rotate(0deg);
+    -o-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+
+  /* line 20, ../../scss/partials/_spinner.sass */
+  100% {
+    -webkit-transform: rotate(-2160deg);
+    -moz-transform: rotate(-2160deg);
+    -ms-transform: rotate(-2160deg);
+    -o-transform: rotate(-2160deg);
+    transform: rotate(-2160deg);
+  }
+}
+
+@-webkit-keyframes normal-opacity {
+  /* line 24, ../../scss/partials/_spinner.sass */
+  0% {
+    opacity: 1;
+  }
+
+  /* line 27, ../../scss/partials/_spinner.sass */
+  45% {
+    opacity: 0;
+  }
+
+  /* line 30, ../../scss/partials/_spinner.sass */
+  55% {
+    opacity: 0;
+  }
+
+  /* line 33, ../../scss/partials/_spinner.sass */
+  100% {
+    opacity: 1;
+  }
+}
+
+@-moz-keyframes normal-opacity {
+  /* line 24, ../../scss/partials/_spinner.sass */
+  0% {
+    opacity: 1;
+  }
+
+  /* line 27, ../../scss/partials/_spinner.sass */
+  45% {
+    opacity: 0;
+  }
+
+  /* line 30, ../../scss/partials/_spinner.sass */
+  55% {
+    opacity: 0;
+  }
+
+  /* line 33, ../../scss/partials/_spinner.sass */
+  100% {
+    opacity: 1;
+  }
+}
+
+@-ms-keyframes normal-opacity {
+  /* line 24, ../../scss/partials/_spinner.sass */
+  0% {
+    opacity: 1;
+  }
+
+  /* line 27, ../../scss/partials/_spinner.sass */
+  45% {
+    opacity: 0;
+  }
+
+  /* line 30, ../../scss/partials/_spinner.sass */
+  55% {
+    opacity: 0;
+  }
+
+  /* line 33, ../../scss/partials/_spinner.sass */
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes normal-opacity {
+  /* line 24, ../../scss/partials/_spinner.sass */
+  0% {
+    opacity: 1;
+  }
+
+  /* line 27, ../../scss/partials/_spinner.sass */
+  45% {
+    opacity: 0;
+  }
+
+  /* line 30, ../../scss/partials/_spinner.sass */
+  55% {
+    opacity: 0;
+  }
+
+  /* line 33, ../../scss/partials/_spinner.sass */
+  100% {
+    opacity: 1;
+  }
+}
+
+/* line 43, ../../scss/partials/_spinner.sass */
+html, body {
+  position: absolute;
+  background-color: #1d2528;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+/* line 51, ../../scss/partials/_spinner.sass */
+.loader {
+  -webkit-animation: 1.25s spin cubic-bezier(0.46, -0.4, 0.2, 1.51) infinite both;
+  -moz-animation: 1.25s spin cubic-bezier(0.46, -0.4, 0.2, 1.51) infinite both;
+  animation: 1.25s spin cubic-bezier(0.46, -0.4, 0.2, 1.51) infinite both;
+  position: absolute;
+  top: 42%;
+  left: 42%;
+  width: 40px;
+  height: 40px;
+  margin-top: -20px;
+  margin-left: -20px;
+  border-radius: 50%;
+  overflow: hidden;
+}
+/* line 63, ../../scss/partials/_spinner.sass */
+.loader:before, .loader:after {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  top: 0;
+  left: 0;
+  box-sizing: border-box;
+  border: 20px solid black;
+  border-top-color: #fa4248;
+  border-left-color: #5ddbba;
+  border-bottom-color: #ede670;
+  border-right-color: #64c3f2;
+}
+/* line 78, ../../scss/partials/_spinner.sass */
+.loader:before {
+  -webkit-filter: blur(2px);
+  -moz-filter: blur(2px);
+  filter: blur(2px);
+}
+/* line 81, ../../scss/partials/_spinner.sass */
+.loader:after {
+  -webkit-animation: 1.25s normal-opacity cubic-bezier(0.46, -0.4, 0.2, 1.51) infinite both;
+  -moz-animation: 1.25s normal-opacity cubic-bezier(0.46, -0.4, 0.2, 1.51) infinite both;
+  animation: 1.25s normal-opacity cubic-bezier(0.46, -0.4, 0.2, 1.51) infinite both;
+}
+
+/* line 4, ../../scss/components/QuizView.scss */
 html, body {
   overflow: hidden;
-  background: WHITE; }
+  background: WHITE;
+}
 
+/* line 5, ../../scss/components/QuizView.scss */
 * {
-  box-sizing: border-box; }
+  box-sizing: border-box;
+}
 
+/* line 22, ../../scss/components/QuizView.scss */
 button:not(#progress) {
   background-color: #1fabc5;
   color: WHITE;
   border: none;
   margin: 10px auto;
   padding: 20px 10px;
-  width: 90%; }
-  button:not(#progress):hover {
-    background-color: #115e6d; }
+  width: 90%;
+}
+/* line 17, ../../scss/components/QuizView.scss */
+button:not(#progress):hover {
+  background-color: #115e6d;
+}
 
+/* line 26, ../../scss/components/QuizView.scss */
 #progress, .socialscript {
   margin: 30px auto;
-  display: block; }
+  display: block;
+}
 
+/* line 31, ../../scss/components/QuizView.scss */
 h1, h2, h3 {
   display: inline;
   padding: 5px 10px;
   line-height: 2em;
   color: #000;
-  background: #FFF; }
+  background: #FFF;
+}
 
+/* line 41, ../../scss/components/QuizView.scss */
 .socialscript ul {
   list-style-type: none;
-  padding: 0; }
+  padding: 0;
+}
+/* line 46, ../../scss/components/QuizView.scss */
 .socialscript > ul {
   max-width: 100%;
   width: 800px;
-  height: 500px; }
+  height: 500px;
+}
 
+/* line 53, ../../scss/components/QuizView.scss */
 .transition {
   display: none;
   height: 100%;
   width: 100%;
-  border: 1px solid #AAA; }
-  .transition .header {
-    color: WHITE; }
-  .transition.active {
-    display: block; }
-  .transition .header, .transition .content {
-    padding: 20px 10px;
-    overflow: hidden; }
-  .transition * {
-    transition: all .2s linear; }
-  .transition.horizontal .header, .transition.horizontal .content {
-    float: left;
-    width: 50%;
-    height: 100%; }
-  .transition.horizontal.closing .header, .transition.horizontal.opening .header {
-    width: 0; }
-  .transition.horizontal.closing .content, .transition.horizontal.opening .content {
-    width: 100%; }
-  .transition.vertical .header, .transition.vertical .content {
-    width: 100%;
-    height: 50%; }
-  .transition.vertical.closing .header, .transition.vertical.opening .header {
-    height: 0; }
-  .transition.vertical.closing .content, .transition.vertical.opening .content {
-    height: 100%; }
-  .transition .header {
-    background-color: #000;
-    background-size: cover;
-    background-position: center; }
+  border: 1px solid #AAA;
+}
+/* line 60, ../../scss/components/QuizView.scss */
+.transition .header {
+  color: WHITE;
+}
+/* line 64, ../../scss/components/QuizView.scss */
+.transition.active {
+  display: block;
+}
+/* line 68, ../../scss/components/QuizView.scss */
+.transition .header, .transition .content {
+  padding: 20px 10px;
+  overflow: hidden;
+}
+/* line 73, ../../scss/components/QuizView.scss */
+.transition * {
+  transition: all .2s linear;
+}
+/* line 78, ../../scss/components/QuizView.scss */
+.transition.horizontal .header, .transition.horizontal .content {
+  float: left;
+  width: 50%;
+  height: 100%;
+}
+/* line 85, ../../scss/components/QuizView.scss */
+.transition.horizontal.closing .header, .transition.horizontal.opening .header {
+  width: 0;
+}
+/* line 86, ../../scss/components/QuizView.scss */
+.transition.horizontal.closing .content, .transition.horizontal.opening .content {
+  width: 100%;
+}
+/* line 91, ../../scss/components/QuizView.scss */
+.transition.vertical .header, .transition.vertical .content {
+  width: 100%;
+  height: 50%;
+}
+/* line 97, ../../scss/components/QuizView.scss */
+.transition.vertical.closing .header, .transition.vertical.opening .header {
+  height: 0;
+}
+/* line 98, ../../scss/components/QuizView.scss */
+.transition.vertical.closing .content, .transition.vertical.opening .content {
+  height: 100%;
+}
+/* line 102, ../../scss/components/QuizView.scss */
+.transition .header {
+  background-color: #000;
+  background-size: cover;
+  background-position: center;
+}
 
+/* line 110, ../../scss/components/QuizView.scss */
 .closing .header,
 .opening .header {
-  padding: 0; }
+  padding: 0;
+}
 
-.loader {
-  top: 28%; }
-
+/* line 114, ../../scss/components/QuizView.scss */
 .answers {
   display: flex;
   flex-wrap: wrap;
-  justify-content: center; }
+  justify-content: center;
+}
+/* line 119, ../../scss/components/QuizView.scss */
+.answers li {
+  flex-grow: 1;
+  width: 50%;
+}
+@media screen and (max-width: 420px) {
+  /* line 119, ../../scss/components/QuizView.scss */
   .answers li {
-    flex-grow: 1;
-    width: 50%; }
-    @media screen and (max-width: 420px) {
-      .answers li {
-        width: 100%; } }
-    .answers li button {
-      background-color: #1fabc5;
-      color: WHITE;
-      border: none;
-      margin: 10px auto;
-      padding: 20px 10px;
-      width: 90%;
-      display: block; }
-      .answers li button:hover {
-        background-color: #115e6d; }
+    width: 100%;
+  }
+}
+/* line 127, ../../scss/components/QuizView.scss */
+.answers li button {
+  background-color: #1fabc5;
+  color: WHITE;
+  border: none;
+  margin: 10px auto;
+  padding: 20px 10px;
+  width: 90%;
+  display: block;
+}
+/* line 17, ../../scss/components/QuizView.scss */
+.answers li button:hover {
+  background-color: #115e6d;
+}
 
+/* line 136, ../../scss/components/QuizView.scss */
 .closing .content *:not(.loader),
 .opening .content *:not(.loader) {
-  display: none; }
+  display: none;
+}

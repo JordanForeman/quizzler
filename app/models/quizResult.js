@@ -2,7 +2,13 @@ var mongoose = require('mongoose');
 
 var quizResultSchema = new mongoose.Schema({
 
-	value: String,
+	value: {
+		value: String,
+		threshold: {
+			min: Number,
+			max: Number
+		}
+	},
 	quiz: mongoose.Schema.Types.ObjectId,
 	title: String,
 	description: String,

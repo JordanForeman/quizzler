@@ -1,111 +1,146 @@
 <%- include components/header.ejs %>
-<div class="container">
 
-	<div class="jumbotron text-center">
-		<h1></span>Create a New Quiz</h1>
-	</div>	
+<link rel="stylesheet" type="text/css" href="/css/components/QuizCreator.css" />
 
-	<!-- Start Form -->
-	<form role="form" method="POST" action="/quiz/new">
+<div id="quizEditor">
 
-		<div class="row">
+	<section class="editor-panel editor-panel-slides">
+		<ul class="slides">
 
-			<!-- Title -->
-			<div class="form-group col-md-6">
-				<label for="quizTitle">Quiz Title</label>
-				<input type="text" class="form-control" id="quizTitle" name="quizTitle" placeholder="Quiz Title..."/>
+			<button id="saveQuizButton" class="btn btn-md btn-success"><span class="fa fa-save"></span> Save Quiz</button>
+
+			<!-- Landing -->
+			<li class="slide slide-landing slide-button slide-active">
+				<span class="fa fa-cog"></span>
+			</li>
+
+			<button id="addQuestionButton" class="btn btn-sm btn-primary"><span class="fa fa-plus"></span> Add Question</button>
+
+			<!-- Questions -->
+			<div class="questions">
+				<li class="slide slide-question">
+					<div class="thumb">
+						<span>Quiz Question</span>
+					</div>
+				</li>
 			</div>
 
-			<!-- Scoring Type -->
-			<!-- TODO: implement other scoring types -->
-			<div class="form-group col-md-6">
-				<label for="quizType">Scoring Type</label>
-				<select class="form-control" id="quizType" name="quizType">
-					<option value="mostcommon">Most Common</option>
-				</select>
-			</div>
+			<!-- Results -->
+			<li class="slide slide-results slide-button">
+				<span class="fa fa-compass"></span>
+			</li>
 
-		</div>
+		</ul>
+	</section>
 
-		<div class="row">
-
-			<!-- Start Text -->
-			<div class="form-group col-md-6">
-				<label for="quizStartText">Start Text</label>
-				<input type="text" class="form-control" id="quizStartText" name="quizStartText" placeholder="Start Text..."/>
-			</div>
-
-			<!-- End Text -->
-			<div class="form-group col-md-6">
-				<label for="quizRestartText">Restart Text</label>
-				<input type="text" class="form-control" id="quizRestartText" name="quizRestartText" placeholder="Restart Text..."/>
-			</div>
-		</div>
-
-		<!-- Description -->
-		<div class="form-group">
-			<label for="quizDescription">Quiz Description</label>
-			<textarea id="quizDescription" class="form-control" name="quizDescription" placeholder="Quiz Description..."></textarea>
-		</div>
-
-		<!-- Questions -->
-		<div id="questionsContainer" class="questions-container">
-			<input type="hidden" id="numQuestions" name="numQuestions" value="1">
-
-			<div class="question">
+	<section class="editor-panel editor-panel-editor" data-active-tab="landing">
+		
+		<!-- Default: Landing/Quiz Details -->
+		<div class="editor-landing container editor-active">
+			<div class="image-preview well">
 				<div class="form-group">
-					<label for="quizQuestion1">Question</label>
-					<input type="text" class="form-control" id="quizQuestion1" name="quizQuestion1" placeholder="Question Text...">
+					<label for="quizBannerImage">Add Quiz Banner</label>
+					<input type="url" data-property="image" class="form-control image" id="quizBannerImage" name="quizBannerImage" placeholder="http://www.example.com/link/to/your/image"/>
+				</div>
+			</div>
+
+			<div class="row">
+
+				<!-- Title -->
+				<div class="form-group col-md-6">
+					<label for="quizTitle">Quiz Title</label>
+					<input type="text" data-property="title" class="form-control" id="quizTitle" name="quizTitle" placeholder="Quiz Title..."/>
 				</div>
 
-				<div class="question-answers">
-					<div class="row">
-						<div class="form-group col-md-3">
-							<div class="input-group">
-								<span class="input-group-addon">A</span>
-								<input type="text" class="form-control" id="quizQuestion1-a" name="quizQuestion1-a" placeholder="Answer..."/>
-							</div>
-						</div>
-						<div class="form-group col-md-3">
-							<div class="input-group">
-								<span class="input-group-addon">B</span>
-								<input type="text" class="form-control" id="quizQuestion1-b" name="quizQuestion1-b" placeholder="Answer..."/>
-							</div>
-						</div>
-						<div class="form-group col-md-3">
-							<div class="input-group">
-								<span class="input-group-addon">C</span>
-								<input type="text" class="form-control" id="quizQuestion1-c" name="quizQuestion1-c" placeholder="Answer..."/>
-							</div>
-						</div>
-						<div class="form-group col-md-3">
-							<div class="input-group">
-								<span class="input-group-addon">D</span>
-								<input type="text" class="form-control" id="quizQuestion1-d" name="quizQuestion1-d" placeholder="Answer..."/>
-							</div>
-						</div>
+				<!-- Scoring Type -->
+				<!-- TODO: implement other scoring types -->
+				<div class="form-group col-md-6">
+					<label for="quizType">Scoring Type</label>
+					<select class="form-control" data-property="scoringModel" id="quizType" name="quizType">
+						<option value="mostcommon">Most Common</option>
+					</select>
+				</div>
+
+			</div>
+
+			<div class="row">
+
+				<!-- Start Text -->
+				<div class="form-group col-md-6">
+					<label for="quizStartText">Start Text</label>
+					<input type="text" class="form-control" data-property="startPrompt" id="quizStartText" name="quizStartText" placeholder="Start Text..."/>
+				</div>
+
+				<!-- End Text -->
+				<div class="form-group col-md-6">
+					<label for="quizRestartText">Restart Text</label>
+					<input type="text" class="form-control" data-property="restartPrompt" id="quizRestartText" name="quizRestartText" placeholder="Restart Text..."/>
+				</div>
+			</div>
+
+			<!-- Description -->
+			<div class="form-group">
+				<label for="quizDescription">Quiz Description</label>
+				<textarea id="quizDescription" data-property="description" class="form-control" name="quizDescription" placeholder="Quiz Description..."></textarea>
+			</div>
+		</div>
+
+		<!-- Initial Question - will be copied when more questions added -->
+		<div class="editor-question container" data-question-index="0">
+
+			<div class="form-group">
+				<label for="quizQuestion1">Question</label>
+				<input type="text" data-property="title" class="form-control" id="quizQuestion1" name="quizQuestion1" placeholder="Question Text...">
+			</div>
+
+			<div class="question-answers row">
+				<div class="form-group col-md-3">
+					<div class="input-group">
+						<span class="input-group-addon">A</span>
+						<input type="text" data-property="description" data-value="a" class="form-control" id="quizQuestion1-a" name="quizQuestion1-a" placeholder="Answer..."/>
+					</div>
+				</div>
+				<div class="form-group col-md-3">
+					<div class="input-group">
+						<span class="input-group-addon">B</span>
+						<input type="text" data-property="description" data-value="b" class="form-control" id="quizQuestion1-b" name="quizQuestion1-b" placeholder="Answer..."/>
+					</div>
+				</div>
+				<div class="form-group col-md-3">
+					<div class="input-group">
+						<span class="input-group-addon">C</span>
+						<input type="text" data-property="description" data-value="c" class="form-control" id="quizQuestion1-c" name="quizQuestion1-c" placeholder="Answer..."/>
+					</div>
+				</div>
+				<div class="form-group col-md-3">
+					<div class="input-group">
+						<span class="input-group-addon">D</span>
+						<input type="text" data-property="description" data-value="d" class="form-control" id="quizQuestion1-d" name="quizQuestion1-d" placeholder="Answer..."/>
 					</div>
 				</div>
 			</div>
 
-			<a id="addQuestionButton" class="btn btn-default"><span class="fa fa-plus"></span> Add Question</a>
+			<div class="image-preview well">
+				<div class="form-group">
+					<label for="quizQuestion1-image">Add Question Image</label>
+					<input type="url" data-property="image" class="form-control image" id="quizQuestion1-image" name="quizQuestion1-image" placeholder="http://www.example.com/link/to/your/image"/>
+				</div>
+			</div>
 		</div>
 
-		<!-- Results -->
-		<div id="resultsContainer" class="results-container">
-			<input type="hidden" id="numResults" name="numResults" value="1" />
-
+		<div class="editor-results container">
+				
 			<div class="result">
 
 				<div class="row">
 					<div class="form-group col-md-8">
 						<label for="quizResult1">Result Title</label>
-						<input type="text" class="form-control" id="quizResult1" name="quizResult1" placeholder="Result Title..."/>
+						<input type="text" data-property="title" class="form-control" id="quizResult1" name="quizResult1" placeholder="Result Title..."/>
 					</div>
 
 					<div class="form-group col-md-4">
 						<label for="quizResult1-value">Corresponding Answer</label>
-						<select class="form-control" id="quizResult1-value" name="quizResult1-value">
+						<select class="form-control" data-property="value" id="quizResult1-value" name="quizResult1-value">
 							<option value="a">A</option>
 							<option value="b">B</option>
 							<option value="c">C</option>
@@ -114,21 +149,30 @@
 					</div>
 				</div>
 
+				<div class="image-preview well">
+					<div class="form-group">
+						<label for="quizResult1-image">Add Result Image</label>
+						<input type="url" data-property="image" class="form-control image" id="quizResult1-image" name="quizResult1-image" placeholder="http://www.example.com/link/to/your/image"/>
+					</div>
+				</div>
+
 				<div class="form-group">
 					<label for="quizResult1-description">Description</label>
-					<textarea class="form-control" id="quizResult1-description" name="quizResult1-description" placeholder="Result Description..."></textarea>
+					<textarea class="form-control" data-property="description" id="quizResult1-description" name="quizResult1-description" placeholder="Result Description..."></textarea>
 				</div>
 			</div>
 
 			<a id="addResultButton" class="btn btn-default"><span class="fa fa-plus"></span> Add Result</a>
 		</div>
 
-		<input type="submit" value="Save Quiz" class="btn btn-lg btn-primary pull-right" />
-
-	</form><!-- End Form -->
+	</section>
 
 </div>
 
+<aside class="modal">
+</aside>
+
+<script type="text/javascript" src="/js/model/quiz.js"></script>
 <script type="text/javascript" src="/js/CreateQuiz.js"></script>
 
 <%- include components/footer.ejs %>

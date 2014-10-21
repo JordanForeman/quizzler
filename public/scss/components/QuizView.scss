@@ -1,4 +1,5 @@
-@import "public/scss/partials/social";
+@import "partials/social";
+@import "partials/spinner";
 
 html, body {overflow: hidden; background: WHITE;}
 * {box-sizing:border-box;}
@@ -108,10 +109,6 @@ h1, h2, h3 {
 .closing .header,
 .opening .header {
   padding: 0;
-}
-
-.loader {
-  top: 28%;
 }
 
 .answers {

@@ -24,11 +24,11 @@
         #quizEditor .editor-panel.editor-panel-slides .slides .slide.slide-active {
           border-color: #34b6ff; }
           #quizEditor .editor-panel.editor-panel-slides .slides .slide.slide-active .thumb:before {
-            background: transparent; }
+            background: rgba(0, 0, 0, 0); }
         #quizEditor .editor-panel.editor-panel-slides .slides .slide:not(.slide-active):hover {
           border-color: #9adbff; }
           #quizEditor .editor-panel.editor-panel-slides .slides .slide:not(.slide-active):hover .thumb:before {
-            background: transparent; }
+            background: rgba(0, 0, 0, 0); }
         #quizEditor .editor-panel.editor-panel-slides .slides .slide.slide-button {
           background: #CCC; }
           #quizEditor .editor-panel.editor-panel-slides .slides .slide.slide-button span {

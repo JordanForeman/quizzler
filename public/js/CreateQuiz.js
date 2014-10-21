@@ -15,11 +15,10 @@ app.QuizCreator = app.QuizCreator || {
 			isChoice = $(elem).parents('.question-answers').length > 0;
 
 		if (isChoice) {
-			var choiceIndex = $(elem).parents('.form-group').index(),
-				choiceValue = $(elem).data('value');
-			this.quizData.questions[questionIndex].choices[choiceIndex] = this.quizData.questions[questionIndex].choices[choiceIndex] || {};
+			var choiceIndex = $(elem).parents('.form-group').index();
+
+			this.quizData.questions[questionIndex].choices[choiceIndex] = this.quizData.questions[questionIndex].choices[choiceIndex] || {value: $(elem).data('value')};
 			this.quizData.questions[questionIndex].choices[choiceIndex][property] = value;
-			this.quizData.questions[questionIndex].choices[choiceIndex]['value'] = choiceValue;
 		} else {
 			this.quizData.questions[questionIndex][property] = value;
 		}
@@ -63,7 +62,7 @@ app.QuizCreator = app.QuizCreator || {
 			// Add an empty question object to quizData
 			// Add a new question thumbnail to navigator
 			// Add new question form markup to page
-			app.QuizCreator.quizData.questions.push({});
+			app.QuizCreator.quizData.questions.push({choices:[]});
 			app.QuizCreator.addQuestionMarkup();
 
 		});
@@ -119,8 +118,8 @@ app.QuizCreator = app.QuizCreator || {
 
 	addQuestionMarkup: function(question) {
 		var thumbMarkup = '<li class="slide slide-question"><div class="thumb"><span>Quiz Question</span></div></li>',
-			editorMarkup = '<div class="editor-question container" data-question-index="0"><div class="form-group"><label for="quizQuestion1">Question</label><input type="text" data-property="title" class="form-control" id="quizQuestion1" name="quizQuestion1" placeholder="Question Text..."></div><div class="question-answers row"><div class="form-group col-md-3"><div class="input-group"><span class="input-group-addon">A</span><input type="text" data-property="a" class="form-control" id="quizQuestion1-a" name="quizQuestion1-a" placeholder="Answer..."/></div></div><div class="form-group col-md-3"><div class="input-group"><span class="input-group-addon">B</span><input type="text" data-property="b" class="form-control" id="quizQuestion1-b" name="quizQuestion1-b" placeholder="Answer..."/></div></div><div class="form-group col-md-3"><div class="input-group"><span class="input-group-addon">C</span><input type="text" data-property="c" class="form-control" id="quizQuestion1-c" name="quizQuestion1-c" placeholder="Answer..."/></div></div><div class="form-group col-md-3"><div class="input-group"><span class="input-group-addon">D</span><input type="text" data-property="d" class="form-control" id="quizQuestion1-d" name="quizQuestion1-d" placeholder="Answer..."/></div></div></div><div class="image-preview well"><div class="form-group"><label for="quizQuestion1-image">Add Question Image</label><input type="url" data-property="image" class="form-control image" id="quizQuestion1-image" name="quizQuestion1-image" placeholder="http://www.example.com/link/to/your/image"/></div></div></div>';
-
+			editorMarkup = '<div class="editor-question container" data-question-index="0"><div class="form-group"><label for="quizQuestion1">Question</label><input type="text" data-property="title" class="form-control" id="quizQuestion1" name="quizQuestion1" placeholder="Question Text..."></div><div class="question-answers row"><div class="form-group col-md-3"><div class="input-group"><span class="input-group-addon">A</span><input type="text" data-property="description" data-value="a" class="form-control" id="quizQuestion1-a" name="quizQuestion1-a" placeholder="Answer..."/></div></div><div class="form-group col-md-3"><div class="input-group"><span class="input-group-addon">B</span><input type="text" data-property="description" data-value="b" class="form-control" id="quizQuestion1-b" name="quizQuestion1-b" placeholder="Answer..."/></div></div><div class="form-group col-md-3"><div class="input-group"><span class="input-group-addon">C</span><input type="text" data-property="description" data-value="c" class="form-control" id="quizQuestion1-c" name="quizQuestion1-c" placeholder="Answer..."/></div></div><div class="form-group col-md-3"><div class="input-group"><span class="input-group-addon">D</span><input type="text" data-property="description" data-value="d" class="form-control" id="quizQuestion1-d" name="quizQuestion1-d" placeholder="Answer..."/></div></div></div><div class="image-preview well"><div class="form-group"><label for="quizQuestion1-image">Add Question Image</label><input type="url" data-property="image" class="form-control image" id="quizQuestion1-image" name="quizQuestion1-image" placeholder="http://www.example.com/link/to/your/image"/></div></div></div>';
+			
 		// TODO: insert question info if provided
 		if (question) {
 		}
