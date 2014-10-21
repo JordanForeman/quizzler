@@ -11,7 +11,7 @@ var express		= require('express'),
 	bodyParser	= require('body-parser');
 
 // app configuration
-app.use(bodyParser());
+app.use(bodyParser({strict: false}));
 app.set('view engine', 'ejs');
 app.use(express.static(process.cwd() + '/public'));
 

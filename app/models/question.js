@@ -2,7 +2,7 @@ var mongoose = require('mongoose');
 
 var questionSchema = new mongoose.Schema({
 
-	description: String,
+	title: String,
 	quiz: mongoose.Schema.Types.ObjectId,
 	choices: [{
 		value: String,

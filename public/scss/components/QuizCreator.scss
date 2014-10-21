@@ -2,6 +2,8 @@ $lightBlue: rgb(52, 182, 255);
 
 #quizEditor {
 
+	counter-reset: question;
+
 	display: flex;
 	// flex-direction: column;
 	flex-wrap: nowrap;
@@ -49,6 +51,16 @@ $lightBlue: rgb(52, 182, 255);
 		  }
 		  
 		  &.slide-button {
+
+		  	background: #CCC;
+
+		  	span {
+		  		font-size: 9em;
+		  		color: #888;
+		  		width: 100%;
+		  		text-align: center;
+		  	}
+
 			.thumb {
 			  background-image: url('http://placehold.it/150x150');
 			}
@@ -60,7 +72,7 @@ $lightBlue: rgb(52, 182, 255);
 			height: 100px;
 			width: 100px;
 		  
-			background-image: url('http://placekitten.com/150/150');
+			background-image: url('http://placehold.it/150x150');
 			background-size: cover;
 			
 			span {
@@ -85,17 +97,51 @@ $lightBlue: rgb(52, 182, 255);
 		  }
 		  
 		}
+
+		.questions {
+			max-height: 550px;
+			overflow-y: scroll;
+			box-shadow: inset 0 -2px 5px #CCC;
+			margin-bottom: 10px;
+			border: 1px solid #CCC;
+			background: #F1F1F1;
+
+			.slide:after {
+				counter-increment: question;
+				content: counter(question);
+
+				position: absolute;
+				top: 10px;
+				left: 10px;
+			}
+		}
 	  }
 	  
 	}
 	
 	&.editor-panel-editor {
 
-		& > div:not(.editor-active) {
-			display: none;
+		width: 80%;
+
+		&> div {
+			img {
+				display: block;
+				margin: 0 auto;
+				padding: 10px;
+				border: 1px solid #CCC;
+			}
+
+			&:not(.editor-active) {
+				display: none;
+			}
 		}
 	}
 	
   }
   
+}
+
+#addQuestionButton, #saveQuizButton {
+	display: block;
+	margin: 0 auto 10px;
 }

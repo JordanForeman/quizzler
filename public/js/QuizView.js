@@ -175,7 +175,7 @@ app.QuizView = app.QuizView || {
 
 	finishQuiz: function(result) {
 
-		$('#resultHeader').css('background-image', result['image']);
+		$('#resultHeader').css('background-image', (result['image'] ? 'url('+result['image']+')' : ''));
 		$('#quizResultTitle').html(result['title']);
 		$('#quizResultContents').html(result['description']);
 
