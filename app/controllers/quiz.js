@@ -20,4 +20,22 @@ router.get('/:id', function(req, res, next){
 		});
 });
 
+// TODO: add quiz id to user's list of liked quizzes
+router.post('/quiz/like/:id', function(req, res, next){
+	var quizId = req.params.id;
+
+	Quiz.findOne({_id: quizId})
+		.exec(function(err, quiz){
+			if (err) return next(err);
+
+			quiz.likes++;
+			quiz.save(function(err){
+				if (err)
+					console.log(err)
+
+				return next(err);
+			});
+		});
+});
+
 module.exports = router;

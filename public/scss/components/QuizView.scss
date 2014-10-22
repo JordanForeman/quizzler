@@ -1,5 +1,5 @@
-@import "partials/social";
-@import "partials/spinner";
+@import "../partials/social";
+@import "../partials/spinner";
 
 html, body {overflow: hidden; background: WHITE;}
 * {box-sizing:border-box;}
@@ -12,7 +12,6 @@ html, body {overflow: hidden; background: WHITE;}
 
     margin: 10px auto;
     padding: 20px 10px;
-    width: 90%;
 
     &:hover {
       background-color: darken($background, 20);
@@ -38,7 +37,7 @@ h1, h2, h3 {
 
 .socialscript {
 
-  ul {
+  & > ul, .answers {
     list-style-type: none;
     padding: 0;
   }
@@ -66,6 +65,7 @@ h1, h2, h3 {
   }
   
   .header, .content {
+    position: relative;
     padding: 20px 10px;
     overflow: hidden;
   }
@@ -115,6 +115,10 @@ h1, h2, h3 {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
+
+  button {
+    width: 90%;
+  }
   
   li {
     flex-grow: 1;
@@ -131,7 +135,34 @@ h1, h2, h3 {
   }
 }
 
+.social {
+  position: absolute;
+  width: 95%;
+  bottom: 75px;
+}
+
 .closing .content,
 .opening .content {
   *:not(.loader) {display: none;}
 }
+
+
+#takeQuizButton, #retakeQuizButton {
+  position: absolute;
+}
+
+#takeQuizButton, #retakeQuizButton {
+  bottom: 10px;
+  left: 5%; // 1/2 of gutter leftover from (100% - width)
+  width: 90%;
+
+  &:after {
+    content: ' →';
+  }
+}
+
+// #retakeQuizButton {
+//   width: 30%;
+//   min-width: 150px;
+//   bottom: 0; right: 10px;
+// }

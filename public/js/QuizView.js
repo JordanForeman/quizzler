@@ -72,15 +72,17 @@ app.QuizView = app.QuizView || {
 		var QuizHTMLString = '';
 
 		// Landing
-		QuizHTMLString += '<ul><li class="transition horizontal active"><section id="landingHeader" class="header"><h1>';
-		QuizHTMLString += this.quizData.title + '</h1></section><section class="content">';
-		QuizHTMLString += this.quizData.description + '<button id="takeQuizButton">';
+		QuizHTMLString += '<ul><li class="transition horizontal active"><section id="landingHeader" class="header" style="background-image: url(';
+		QuizHTMLString += this.quizData.image + ');"><h1>';
+		QuizHTMLString += this.quizData.title + '</h1></section><section class="content"><p>';
+		QuizHTMLString += this.quizData.description + '</p><button id="takeQuizButton">';
 		QuizHTMLString += this.quizData.startPrompt + '</button></section></li>';
 
 		// Questions
 		[].forEach.call(this.quizData.questions, function(question){
 
-			QuizHTMLString += '<li class="transition vertical"><section id="" class="header"><h2>';
+			QuizHTMLString += '<li class="transition vertical"><section class="header" style="background-image: url(';
+			QuizHTMLString += question.image + ');"><h2>';
 			QuizHTMLString += question.title + '</h2></section><section class="content"><ul class="answers">';
 
 			[].forEach.call(question.choices, function(choice){
@@ -94,7 +96,7 @@ app.QuizView = app.QuizView || {
 		});
 
 		// Ending Slide
-		QuizHTMLString += '<li class="transition horizontal results"><section id="resultHeader" class="header"><h2 id="quizResultTitle"></h2></section><section class="content"><div id="quizResultContents"></div><div class="social"><ul class="social-toolbar"><li class="share-facebook"><span class="icon-facebook"></span> Share </li><li class="share-pinterest"><span class="icon-pinterest"></span> Pin </li><li class="share-twitter"><span class="icon-twitter"></span> Tweet </li></ul></div><button id="retakeQuizButton">'
+		QuizHTMLString += '<li class="transition horizontal results"><section id="resultHeader" class="header"><h2 id="quizResultTitle"></h2></section><section class="content"><div id="quizResultContents"></div><div class="social"><ul class="social-toolbar"><li class="share-facebook"><span class="fa fa-facebook"></span></li><li class="share-pinterest"><span class="fa fa-pinterest"></span></li><li class="share-twitter"><span class="fa fa-twitter"></span></li></ul></div><button id="retakeQuizButton">'
 		QuizHTMLString += this.quizData.restartPrompt + '</button></section></li></ul>';
 		
 		$(this.element).append(QuizHTMLString);
@@ -136,9 +138,13 @@ app.QuizView = app.QuizView || {
 	getResults: function() {
 		switch(this.quizData.scoringModel) {
 			case "mostcommon":
-				return this.getMostCommon()
+				return this.getMostCommon();
+				break;
+			case "sumrange":
+				return this.getRangedResult();
 				break;
 			default: 
+				return null;
 				break;
 		}
 	},
@@ -184,15 +190,11 @@ app.QuizView = app.QuizView || {
 		var bestResult = null;
 		[].forEach.call(this.quizData.results, function(result){
 
-			var min = result.threshold.min,
-				max = result.threshold.max;
+			var min = result.value.threshold.min,
+				max = result.value.threshold.max;
 
-			// Perfect Match!
-			if (pointTotal > min && pointTotal < max)
-				return result;
-
-			// Better at least have one
-			if (!bestResult)
+			// Perfect Match - or we should at least have a result?
+			if (pointTotal > min && pointTotal < max || !bestResult)
 				bestResult = result;
 
 			// We've got a good result, but is it the best?
@@ -204,6 +206,11 @@ app.QuizView = app.QuizView || {
 	},
 
 	finishQuiz: function(result) {
+
+		if (!result) {
+			console.log("Some idiot didn't provide a friggin result object!");
+			result = {};
+		}
 
 		$('#resultHeader').css('background-image', (result['image'] ? 'url('+result['image']+')' : ''));
 		$('#quizResultTitle').html(result['title']);
@@ -233,8 +240,7 @@ app.QuizView = app.QuizView || {
 		} else if($(currentScreen).hasClass('opening')) {
 
 			if ($(currentScreen).hasClass('results')) {
-				var result = this.getResults();
-				this.finishQuiz(result);
+				this.finishQuiz(this.getResults());
 			}
 
 			$(currentScreen).removeClass('opening');

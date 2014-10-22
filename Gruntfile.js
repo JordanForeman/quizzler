@@ -20,7 +20,7 @@ module.exports = function(grunt) {
 					expand: true,
 					cwd: './public/scss',
 					src: ['**/*.scss'],
-					dest: './public/css/',
+					dest: '/public/css/',
 					ext: '.css'
 				}]
 			}

@@ -54,62 +54,23 @@ app.QuizCreator = app.QuizCreator || {
 		if (quizData)
 			this.quizData = quizData;
 
-		$('.editor-panel-editor').on('change', 'textarea, input:not(.image), select', this.detailChanged.bind(this));
+		// Update Quiz Data on Input Change
+		$('.editor-panel-editor').on('change', 'textarea, input:not(.image)', this.detailChanged.bind(this));
 
 		// Add a new Question
-		$('#addQuestionButton').click(function(){
-
-			// Add an empty question object to quizData
-			// Add a new question thumbnail to navigator
-			// Add new question form markup to page
-			app.QuizCreator.quizData.questions.push({choices:[]});
-			app.QuizCreator.addQuestionMarkup();
-
-		});
+		$('#addQuestionButton').click(this.addQuestion.bind(this));
 
 		// TODO: Add/Edit an Image
-		$('.editor-panel-editor').on('change', 'input.image', function(e){
-			if (this.checkValidity()) {
-				
-				var imgUrl = $(this).val(),
-					image = $(this).parents('.image-preview').find('img');
-				if (!image.length) {
-					image = document.createElement('img');
-				}
-				$(image).attr('src', imgUrl);
-				$(this).parents('.image-preview').prepend(image);
-				
-				// FIXME: Update thumbnail
-				var qIndex = $(this).parents('div:not(.form-group)').first().index();
-				$('.editor-panel-slides .slides .questions li').children().eq(qIndex-1).css('background-image', 'url(' + imgUrl + ')');
+		$('.editor-panel-editor').on('change', 'input.image', this.updateImage.bind(this));
 
-				// TODO: create image object, store to be saved on server once quiz is saved
-			}
-		});
-
-		// TODO: Add a result
-		$('#addResultButton').click(function(){
-
-		});
+		// Add a result
+		$('#addResultButton').click(this.addResult.bind(this));
 
 		// Switch Slides
-		$('.editor-panel-slides .slides').on('click', 'li:not(#addQuestionButton)', function(){
+		$('.editor-panel-slides .slides').on('click', 'li:not(#addQuestionButton)', this.switchSlides.bind(this));
 
-			// Check if element is Add New Button - handled elsewhere
-			// if ($(this).is('#addQuestionButton')) return false;
-
-			// Update Currently Active Slide in Sidebar
-			$('.editor-panel-slides .slides li.slide-active').removeClass('slide-active');
-			$(this).addClass('slide-active');
-
-			// Change view to corresponding view type
-			var newSlideIndex = $(this).parents('.slides').find('li').index(this);
-			$('.editor-panel-editor .editor-active').removeClass('editor-active');
-			$('.editor-panel-editor').children('div').eq(newSlideIndex).addClass('editor-active');
-
-			// TODO: Populate view with relevant details (if necessary?)
-
-		});
+		// Update Scoring Model
+		$('.editor-landing').on('change', 'select', this.changeScoringModel.bind(this));
 
 		// Save Quiz
 		$('#saveQuizButton').click(this.saveQuiz.bind(this));
@@ -127,6 +88,89 @@ app.QuizCreator = app.QuizCreator || {
 		$('.editor-panel-slides .slide-question').last().after(thumbMarkup);
 		$('.editor-panel-editor .editor-question').last().after(editorMarkup);
 
+	},
+
+	//---------------
+	// Event Handlers
+	//---------------
+	addQuestion: function(event) {
+		// Add an empty question object to quizData
+		// Add a new question thumbnail to navigator
+		// Add new question form markup to page
+		this.quizData.questions.push({choices:[]});
+		this.addQuestionMarkup();
+	},
+
+	updateImage: function(event) {
+		var targetElem = $(event.currentTarget),
+			editorContainer = $(targetElem).parents('.editor-active');
+		
+		if (!editorContainer.length || !targetElem.checkValidity())
+			return false; // FIXME: handle error more gracefully
+		
+		// Update Image Preview
+		var imgUrl = $(targetElem).val(),
+			image = $(targetElem).parents('.image-preview').find('img');
+		if (!image.length) {
+			image = document.createElement('img');
+		}
+		$(image).attr('src', imgUrl);
+		$(targetElem).parents('.image-preview').prepend(image);
+		
+		// FIXME: Update thumbnail
+		var qIndex = $(targetElem).parents('div:not(.form-group)').first().index();
+		$('.editor-panel-slides .slides .questions li').children().eq(qIndex-1).css('background-image', 'url(' + imgUrl + ')');
+
+		// Update Data Model
+		if ($(editorContainer).hasClass('editor-landing')) 
+		{
+			app.QuizCreator.quizData['image'] = imgUrl;
+		}
+		else if ($(editorContainer).hasClass('editor-question')) 
+		{
+			var questionIndex = this.getParentIndex(targetElem, '.editor-question');
+			app.QuizCreator.quizData.questions[questionIndex]['image'] = imgUrl;
+		} 
+		else if ($(editorContainer).hasClass('editor-results')) 
+		{
+			var resultIndex = this.getParentIndex(targetElem, '.result');
+			this.quizData.results[resultIndex]['image'] = imgUrl;
+		}
+
+	},
+
+	addResult: function(event) {
+			var targetElem = $(event.currentTarget),
+				resultFormMarkup = '<hr /><div class="result"><div class="row"><div class="form-group col-md-8"><label for="quizResult1">Result Title</label><input type="text" data-property="title" class="form-control" id="quizResult1" name="quizResult1" placeholder="Result Title..."/></div><div class="form-group col-md-4"><label for="quizResult1-value">Corresponding Answer</label><select class="form-control" data-property="value" id="quizResult1-value" name="quizResult1-value"><option value="a">A</option><option value="b">B</option><option value="c">C</option><option value="d">D</option></select></div></div><div class="image-preview well"><div class="form-group"><label for="quizResult1-image">Add Result Image</label><input type="url" data-property="image" class="form-control image" id="quizResult1-image" name="quizResult1-image" placeholder="http://www.example.com/link/to/your/image"/></div></div><div class="form-group"><label for="quizResult1-description">Description</label><textarea class="form-control" data-property="description" id="quizResult1-description" name="quizResult1-description" placeholder="Result Description..."></textarea></div></div>';
+			
+			$(targetElem).parent('.editor-results').append(resultFormMarkup);
+			this.quizData.results.push({});
+	},
+
+	switchSlides: function(event) {
+			var targetElem = $(event.currentTarget);
+
+			// Check if element is Add New Button - handled elsewhere
+			// if ($(this).is('#addQuestionButton')) return false;
+
+			// Update Currently Active Slide in Sidebar
+			$('.editor-panel-slides .slides li.slide-active').removeClass('slide-active');
+			$(targetElem).addClass('slide-active');
+
+			// Change view to corresponding view type
+			var newSlideIndex = $(targetElem).parents('.slides').find('li').index(targetElem);
+			$('.editor-panel-editor .editor-active').removeClass('editor-active');
+			$('.editor-panel-editor').children('div').eq(newSlideIndex).addClass('editor-active');
+
+			// TODO: Populate view with relevant details (if necessary?)
+
+	},
+
+	changeScoringModel: function(event) {
+		var newScoringModel = $(event.currentTarget).val();
+		app.QuizCreator.quizData['scoringModel'] = newScoringModel;
+
+		//TODO: update question/result forms
 	},
 
 	saveQuiz: function() {

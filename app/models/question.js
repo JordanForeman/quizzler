@@ -5,9 +5,10 @@ var questionSchema = new mongoose.Schema({
 	title: String,
 	quiz: mongoose.Schema.Types.ObjectId,
 	choices: [{
-		value: String,
+		value: mongoose.Schema.Types.Mixed,
 		description: String
-	}]
+	}],
+	image: String
 
 });
 

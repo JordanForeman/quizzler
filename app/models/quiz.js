@@ -1,8 +1,4 @@
-var mongoose = require('mongoose'),
-	scoringModels = {
-		MOST_COMMON: "mostcommon",
-		SUMRANGE: "sumrange"
-	};
+var mongoose = require('mongoose');
 
 var quizSchema = mongoose.Schema({
 
@@ -12,6 +8,14 @@ var quizSchema = mongoose.Schema({
 
 	startPrompt: String,
 	restartPrompt: String,
+
+	likes: Number,
+	image: String,
+
+	scoringModel: {
+		type: String,
+		enum: ['mostcommon', 'sumrange']
+	},
 
 	questions: [{
 		ref: 'Question',

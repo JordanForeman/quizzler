@@ -1,20 +1,36 @@
+@charset "IBM437";
 /* line 11, ../../scss/partials/_social.scss */
 .social-toolbar {
+  position: relative;
   max-width: 900px;
   list-style-type: none;
-  padding: 0 10px;
-  display: flex;
-  flex-wrap: nowrap;
-  justify-content: space-around;
+  padding: 5px 10px 0;
+  text-align: center;
+  border: 1px solid #CCC;
+  margin: 20px auto;
 }
 /* line 21, ../../scss/partials/_social.scss */
+.social-toolbar:before {
+  content: 'Share';
+  position: absolute;
+  top: -8px;
+  left: 10px;
+  background: #FFF;
+  padding: 0 5px;
+  text-transform: uppercase;
+  font-weight: 700;
+  font-size: 0.75em;
+  color: #CCC;
+}
+/* line 36, ../../scss/partials/_social.scss */
 .social-toolbar li {
+  display: inline-block;
   position: relative;
   color: WHITE;
   height: 44px;
   line-height: 44px;
-  margin: 0 5px;
-  min-width: 44px;
+  margin: 0 5%;
+  width: 44px;
   border-bottom: 3px solid;
   text-align: center;
   font-family: Montserrat;
@@ -22,48 +38,49 @@
   flex-grow: 1;
   overflow: hidden;
   cursor: pointer;
+  border-radius: 50%;
 }
 @media screen and (max-width: 650px) {
-  /* line 21, ../../scss/partials/_social.scss */
+  /* line 36, ../../scss/partials/_social.scss */
   .social-toolbar li {
     margin: 0;
     width: 44px;
   }
 }
-/* line 41, ../../scss/partials/_social.scss */
+/* line 58, ../../scss/partials/_social.scss */
 .social-toolbar li span {
-  float: left;
+  width: 100%;
   padding: 0 10px;
 }
 @media screen and (max-width: 650px) {
-  /* line 41, ../../scss/partials/_social.scss */
+  /* line 58, ../../scss/partials/_social.scss */
   .social-toolbar li span {
     float: none;
     padding: 0;
     margin-right: 9999px;
   }
 }
-/* line 51, ../../scss/partials/_social.scss */
+/* line 68, ../../scss/partials/_social.scss */
 .social-toolbar li span:before {
   font-size: 1.5em;
   line-height: 44px;
 }
-/* line 58, ../../scss/partials/_social.scss */
+/* line 75, ../../scss/partials/_social.scss */
 .social-toolbar .share-facebook {
   background: #4b68b9;
   border-color: #2c3f72;
 }
-/* line 63, ../../scss/partials/_social.scss */
+/* line 80, ../../scss/partials/_social.scss */
 .social-toolbar .share-pinterest {
   background: #ce2029;
   border-color: #761217;
 }
-/* line 68, ../../scss/partials/_social.scss */
+/* line 85, ../../scss/partials/_social.scss */
 .social-toolbar .share-twitter {
   background: #00b0ed;
   border-color: #006487;
 }
-/* line 73, ../../scss/partials/_social.scss */
+/* line 90, ../../scss/partials/_social.scss */
 .social-toolbar .share-google-plus {
   background: #dd4c39;
   border-color: #96281a;
@@ -253,8 +270,8 @@ html, body {
   -moz-animation: 1.25s spin cubic-bezier(0.46, -0.4, 0.2, 1.51) infinite both;
   animation: 1.25s spin cubic-bezier(0.46, -0.4, 0.2, 1.51) infinite both;
   position: absolute;
-  top: 42%;
-  left: 42%;
+  top: 50%;
+  left: 50%;
   width: 40px;
   height: 40px;
   margin-top: -20px;
@@ -302,27 +319,26 @@ html, body {
   box-sizing: border-box;
 }
 
-/* line 22, ../../scss/components/QuizView.scss */
+/* line 21, ../../scss/components/QuizView.scss */
 button:not(#progress) {
   background-color: #1fabc5;
   color: WHITE;
   border: none;
   margin: 10px auto;
   padding: 20px 10px;
-  width: 90%;
 }
-/* line 17, ../../scss/components/QuizView.scss */
+/* line 16, ../../scss/components/QuizView.scss */
 button:not(#progress):hover {
   background-color: #115e6d;
 }
 
-/* line 26, ../../scss/components/QuizView.scss */
+/* line 25, ../../scss/components/QuizView.scss */
 #progress, .socialscript {
   margin: 30px auto;
   display: block;
 }
 
-/* line 31, ../../scss/components/QuizView.scss */
+/* line 30, ../../scss/components/QuizView.scss */
 h1, h2, h3 {
   display: inline;
   padding: 5px 10px;
@@ -331,35 +347,36 @@ h1, h2, h3 {
   background: #FFF;
 }
 
-/* line 41, ../../scss/components/QuizView.scss */
-.socialscript ul {
+/* line 40, ../../scss/components/QuizView.scss */
+.socialscript > ul, .socialscript .answers {
   list-style-type: none;
   padding: 0;
 }
-/* line 46, ../../scss/components/QuizView.scss */
+/* line 45, ../../scss/components/QuizView.scss */
 .socialscript > ul {
   max-width: 100%;
   width: 800px;
   height: 500px;
 }
 
-/* line 53, ../../scss/components/QuizView.scss */
+/* line 52, ../../scss/components/QuizView.scss */
 .transition {
   display: none;
   height: 100%;
   width: 100%;
   border: 1px solid #AAA;
 }
-/* line 60, ../../scss/components/QuizView.scss */
+/* line 59, ../../scss/components/QuizView.scss */
 .transition .header {
   color: WHITE;
 }
-/* line 64, ../../scss/components/QuizView.scss */
+/* line 63, ../../scss/components/QuizView.scss */
 .transition.active {
   display: block;
 }
-/* line 68, ../../scss/components/QuizView.scss */
+/* line 67, ../../scss/components/QuizView.scss */
 .transition .header, .transition .content {
+  position: relative;
   padding: 20px 10px;
   overflow: hidden;
 }
@@ -414,33 +431,59 @@ h1, h2, h3 {
   justify-content: center;
 }
 /* line 119, ../../scss/components/QuizView.scss */
+.answers button {
+  width: 90%;
+}
+/* line 123, ../../scss/components/QuizView.scss */
 .answers li {
   flex-grow: 1;
   width: 50%;
 }
 @media screen and (max-width: 420px) {
-  /* line 119, ../../scss/components/QuizView.scss */
+  /* line 123, ../../scss/components/QuizView.scss */
   .answers li {
     width: 100%;
   }
 }
-/* line 127, ../../scss/components/QuizView.scss */
+/* line 131, ../../scss/components/QuizView.scss */
 .answers li button {
   background-color: #1fabc5;
   color: WHITE;
   border: none;
   margin: 10px auto;
   padding: 20px 10px;
-  width: 90%;
   display: block;
 }
-/* line 17, ../../scss/components/QuizView.scss */
+/* line 16, ../../scss/components/QuizView.scss */
 .answers li button:hover {
   background-color: #115e6d;
 }
 
-/* line 136, ../../scss/components/QuizView.scss */
+/* line 138, ../../scss/components/QuizView.scss */
+.social {
+  position: absolute;
+  width: 95%;
+  bottom: 75px;
+}
+
+/* line 146, ../../scss/components/QuizView.scss */
 .closing .content *:not(.loader),
 .opening .content *:not(.loader) {
   display: none;
+}
+
+/* line 150, ../../scss/components/QuizView.scss */
+#takeQuizButton, #retakeQuizButton {
+  position: absolute;
+}
+
+/* line 154, ../../scss/components/QuizView.scss */
+#takeQuizButton, #retakeQuizButton {
+  bottom: 10px;
+  left: 5%;
+  width: 90%;
+}
+/* line 159, ../../scss/components/QuizView.scss */
+#takeQuizButton:after, #retakeQuizButton:after {
+  content: ' →';
 }

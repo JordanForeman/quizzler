@@ -13,7 +13,7 @@ router.get('/', function(req, res){
 // Quiz endpoints
 //
 // ======================
-router.get('/quiz/:id', function(req, res){
+router.get('/quiz/data/:id', function(req, res){
 	var quizId = req.params.id;
 	Quiz.findOne({_id: quizId})
 		.populate('questions results')
@@ -22,6 +22,17 @@ router.get('/quiz/:id', function(req, res){
 				return console.log(err);
 			}
 			res.json(quiz);
+		});
+});
+
+router.get('/quiz/:id', function(req, res){
+	var quizId = req.params.id;
+	Quiz.findOne({_id: quizId})
+		.populate('questions results')
+		.exec(function(err, quiz){
+			if (err)
+				res.status(500).end();
+			res.json(quiz); //TODO: this should return a JS file with the quiz data already initialized
 		});
 });
 

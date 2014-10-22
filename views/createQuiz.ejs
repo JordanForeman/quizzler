@@ -58,6 +58,7 @@
 					<label for="quizType">Scoring Type</label>
 					<select class="form-control" data-property="scoringModel" id="quizType" name="quizType">
 						<option value="mostcommon">Most Common</option>
+						<option value="sumrange">Score Range</option>
 					</select>
 				</div>
 
@@ -129,6 +130,9 @@
 		</div>
 
 		<div class="editor-results container">
+
+			<a id="addResultButton" class="btn btn-default"><span class="fa fa-plus"></span> Add Result</a>
+			<hr />
 				
 			<div class="result">
 
@@ -161,8 +165,6 @@
 					<textarea class="form-control" data-property="description" id="quizResult1-description" name="quizResult1-description" placeholder="Result Description..."></textarea>
 				</div>
 			</div>
-
-			<a id="addResultButton" class="btn btn-default"><span class="fa fa-plus"></span> Add Result</a>
 		</div>
 
 	</section>
