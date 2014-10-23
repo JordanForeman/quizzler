@@ -1,6 +1,6 @@
 var config = {
 	dev : {
-		DB_PATH : "mongodb://localhost/27017/DB",
+		DB_PATH : process.env.MONGOHQ_URL || "mongodb://localhost/27017/DB",
 
 		FACEBOOK : {
 			CLIENT_ID 		: '670211293040806',
