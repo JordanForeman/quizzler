@@ -239,8 +239,8 @@ app.QuizCreator = app.QuizCreator || {
 			data: JSON.stringify(this.quizData),
 			dataType: 'json',
 			success: function(data) {
-				var quizId = data.quiz._id;
-				console.log(quizId);
+				var quizId = data.quizData['_id'];
+				window.location = '/quiz/' + quizId;
 			},
 			complete: function(data) {
 				console.log(data);
