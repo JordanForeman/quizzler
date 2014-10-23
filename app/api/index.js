@@ -3,6 +3,12 @@ var router = require('express').Router(),
 	Result = require('../models/quizResult'),
 	Quiz = require('../models/quiz');
 
+router.use('/', function(req, res, next){
+	res.header("Access-Control-Allow-Origin", "*");
+	res.header("Access-Control-Allow-Headers", "X-Requested-With");
+	next();
+});
+
 // test route to make sure everything is working
 router.get('/', function(req, res){
 	res.json({message: 'hooray! welcome to our api!' });
