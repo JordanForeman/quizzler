@@ -32,7 +32,7 @@ router.get('/quiz/:id', function(req, res){
 		.exec(function(err, quiz){
 			if (err)
 				res.status(500).end();
-			res.json(quiz); //TODO: this should return a JS file with the quiz data already initialized
+			res.render('view', {quiz: quiz, pageType: 'QuizView'}); //TODO: this should return a JS file with the quiz data already initialized
 		});
 });
 

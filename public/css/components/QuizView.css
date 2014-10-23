@@ -43,44 +43,43 @@
 @media screen and (max-width: 650px) {
   /* line 36, ../../scss/partials/_social.scss */
   .social-toolbar li {
-    margin: 0;
     width: 44px;
   }
 }
-/* line 58, ../../scss/partials/_social.scss */
+/* line 57, ../../scss/partials/_social.scss */
 .social-toolbar li span {
   width: 100%;
   padding: 0 10px;
 }
 @media screen and (max-width: 650px) {
-  /* line 58, ../../scss/partials/_social.scss */
+  /* line 57, ../../scss/partials/_social.scss */
   .social-toolbar li span {
     float: none;
     padding: 0;
     margin-right: 9999px;
   }
 }
-/* line 68, ../../scss/partials/_social.scss */
+/* line 67, ../../scss/partials/_social.scss */
 .social-toolbar li span:before {
   font-size: 1.5em;
   line-height: 44px;
 }
-/* line 75, ../../scss/partials/_social.scss */
+/* line 74, ../../scss/partials/_social.scss */
 .social-toolbar .share-facebook {
   background: #4b68b9;
   border-color: #2c3f72;
 }
-/* line 80, ../../scss/partials/_social.scss */
+/* line 79, ../../scss/partials/_social.scss */
 .social-toolbar .share-pinterest {
   background: #ce2029;
   border-color: #761217;
 }
-/* line 85, ../../scss/partials/_social.scss */
+/* line 84, ../../scss/partials/_social.scss */
 .social-toolbar .share-twitter {
   background: #00b0ed;
   border-color: #006487;
 }
-/* line 90, ../../scss/partials/_social.scss */
+/* line 89, ../../scss/partials/_social.scss */
 .social-toolbar .share-google-plus {
   background: #dd4c39;
   border-color: #96281a;
@@ -362,90 +361,116 @@ h1, h2, h3 {
 /* line 52, ../../scss/components/QuizView.scss */
 .transition {
   display: none;
-  height: 100%;
   width: 100%;
   border: 1px solid #AAA;
 }
-/* line 59, ../../scss/components/QuizView.scss */
+/* line 57, ../../scss/components/QuizView.scss */
 .transition .header {
   color: WHITE;
-}
-/* line 63, ../../scss/components/QuizView.scss */
-.transition.active {
-  display: block;
-}
-/* line 67, ../../scss/components/QuizView.scss */
-.transition .header, .transition .content {
-  position: relative;
-  padding: 20px 10px;
-  overflow: hidden;
-}
-/* line 73, ../../scss/components/QuizView.scss */
-.transition * {
-  transition: all .2s linear;
-}
-/* line 78, ../../scss/components/QuizView.scss */
-.transition.horizontal .header, .transition.horizontal .content {
-  float: left;
-  width: 50%;
-  height: 100%;
-}
-/* line 85, ../../scss/components/QuizView.scss */
-.transition.horizontal.closing .header, .transition.horizontal.opening .header {
-  width: 0;
-}
-/* line 86, ../../scss/components/QuizView.scss */
-.transition.horizontal.closing .content, .transition.horizontal.opening .content {
-  width: 100%;
-}
-/* line 91, ../../scss/components/QuizView.scss */
-.transition.vertical .header, .transition.vertical .content {
-  width: 100%;
-  height: 50%;
-}
-/* line 97, ../../scss/components/QuizView.scss */
-.transition.vertical.closing .header, .transition.vertical.opening .header {
-  height: 0;
-}
-/* line 98, ../../scss/components/QuizView.scss */
-.transition.vertical.closing .content, .transition.vertical.opening .content {
-  height: 100%;
-}
-/* line 102, ../../scss/components/QuizView.scss */
-.transition .header {
   background-color: #000;
   background-size: cover;
   background-position: center;
 }
+/* line 63, ../../scss/components/QuizView.scss */
+.transition .header h1, .transition .header h2 {
+  position: absolute;
+  bottom: 0;
+  padding: 0 10px;
+}
+/* line 70, ../../scss/components/QuizView.scss */
+.transition.active {
+  display: block;
+}
+/* line 74, ../../scss/components/QuizView.scss */
+.transition .header, .transition .content {
+  position: relative;
+  padding: 20px 10px;
+  overflow: hidden;
+  min-height: 200px;
+}
+/* line 83, ../../scss/components/QuizView.scss */
+.transition:first-of-type .content, .transition:last-of-type .content {
+  padding-bottom: 200px;
+}
+/* line 86, ../../scss/components/QuizView.scss */
+.transition * {
+  transition: all .2s linear;
+}
+/* line 91, ../../scss/components/QuizView.scss */
+.transition.closing .header, .transition.opening .header {
+  height: 0;
+  min-height: 0;
+}
+/* line 92, ../../scss/components/QuizView.scss */
+.transition.closing .content, .transition.opening .content {
+  height: 100%;
+}
+@media screen and (min-width: 650px) {
+  /* line 52, ../../scss/components/QuizView.scss */
+  .transition {
+    height: 100%;
+  }
+  /* line 99, ../../scss/components/QuizView.scss */
+  .transition .content:first-of-type, .transition .content:last-of-type {
+    padding-bottom: 0;
+  }
+  /* line 104, ../../scss/components/QuizView.scss */
+  .transition.horizontal .header, .transition.horizontal .content {
+    float: left;
+    width: 50%;
+    height: 100%;
+  }
+  /* line 111, ../../scss/components/QuizView.scss */
+  .transition.horizontal.closing .header, .transition.horizontal.opening .header {
+    width: 0;
+  }
+  /* line 112, ../../scss/components/QuizView.scss */
+  .transition.horizontal.closing .content, .transition.horizontal.opening .content {
+    width: 100%;
+  }
+  /* line 117, ../../scss/components/QuizView.scss */
+  .transition.vertical .header, .transition.vertical .content {
+    width: 100%;
+    height: 50%;
+  }
+  /* line 123, ../../scss/components/QuizView.scss */
+  .transition.vertical.closing .header, .transition.vertical.opening .header {
+    height: 0;
+  }
+  /* line 124, ../../scss/components/QuizView.scss */
+  .transition.vertical.closing .content, .transition.vertical.opening .content {
+    height: 100%;
+  }
+}
 
-/* line 110, ../../scss/components/QuizView.scss */
+/* line 131, ../../scss/components/QuizView.scss */
 .closing .header,
 .opening .header {
   padding: 0;
 }
 
-/* line 114, ../../scss/components/QuizView.scss */
+/* line 135, ../../scss/components/QuizView.scss */
 .answers {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
 }
-/* line 119, ../../scss/components/QuizView.scss */
+/* line 140, ../../scss/components/QuizView.scss */
 .answers button {
   width: 90%;
 }
-/* line 123, ../../scss/components/QuizView.scss */
+/* line 144, ../../scss/components/QuizView.scss */
 .answers li {
   flex-grow: 1;
-  width: 50%;
+  width: 90%;
 }
-@media screen and (max-width: 420px) {
-  /* line 123, ../../scss/components/QuizView.scss */
+@media screen and (min-width: 650px) {
+  /* line 144, ../../scss/components/QuizView.scss */
   .answers li {
-    width: 100%;
+    width: 50%;
   }
 }
-/* line 131, ../../scss/components/QuizView.scss */
+/* line 152, ../../scss/components/QuizView.scss */
 .answers li button {
   background-color: #1fabc5;
   color: WHITE;
@@ -459,31 +484,31 @@ h1, h2, h3 {
   background-color: #115e6d;
 }
 
-/* line 138, ../../scss/components/QuizView.scss */
+/* line 159, ../../scss/components/QuizView.scss */
 .social {
   position: absolute;
   width: 95%;
   bottom: 75px;
 }
 
-/* line 146, ../../scss/components/QuizView.scss */
+/* line 167, ../../scss/components/QuizView.scss */
 .closing .content *:not(.loader),
 .opening .content *:not(.loader) {
   display: none;
 }
 
-/* line 150, ../../scss/components/QuizView.scss */
+/* line 171, ../../scss/components/QuizView.scss */
 #takeQuizButton, #retakeQuizButton {
   position: absolute;
 }
 
-/* line 154, ../../scss/components/QuizView.scss */
+/* line 175, ../../scss/components/QuizView.scss */
 #takeQuizButton, #retakeQuizButton {
   bottom: 10px;
   left: 5%;
   width: 90%;
 }
-/* line 159, ../../scss/components/QuizView.scss */
+/* line 180, ../../scss/components/QuizView.scss */
 #takeQuizButton:after, #retakeQuizButton:after {
   content: ' →';
 }

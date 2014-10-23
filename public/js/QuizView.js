@@ -8,7 +8,7 @@ app.QuizView = app.QuizView || {
 	quizData: {},
 	decisions: [],
 	
-	init: function(selector, QuizId) {
+	init: function(selector, QuizId, prepopulated) {
 
 		// initialize social library
 		app.Social.init({
@@ -17,7 +17,16 @@ app.QuizView = app.QuizView || {
 		});
 
 		this.element = $(selector);
-		this.loadData(QuizId, this.generateQuiz);
+		this.loadData(QuizId, function(data){
+			this.quizData = data;
+			
+			if (!prepopulated) {
+				this.generateQuizHTML();
+			}
+
+			this.addListeners();
+
+		}.bind(this));
 	},
 
 	startQuiz: function() {
@@ -53,15 +62,12 @@ app.QuizView = app.QuizView || {
 
 	loadData: function(quizId, callBack) {
 		$.ajax({
-			url: '/api/quiz/' + quizId,
+			url: '/api/quiz/data/' + quizId,
 			success: callBack
 		});
 	},
 
 	generateQuiz: function(data) {
-		app.QuizView.quizData = data;
-		console.log(app.QuizView.quizData);
-
 		app.QuizView.generateQuizHTML();
 		app.QuizView.addListeners();
 	},

@@ -1,0 +1,66 @@
+<%if (typeof quiz == 'undefined') { %>
+	Error fetching quiz
+<% } else { %>
+
+<div class="socialscript" data-quiz-id="<% quiz._id %>">
+    <ul>
+
+    	<!-- Landing -->
+        <li class="transition horizontal active">
+            <section id="landingHeader" class="header" style="background-image: url(<%= quiz.image %>);">
+                <h1><%= quiz.title %></h1>
+            </section>
+            <section class="content">
+            	<%- quiz.description %>
+                <button id="takeQuizButton"><%= quiz.startPrompt || 'Take Quiz' %></button>
+            </section>
+        </li>
+
+        <!-- Questions -->
+        <% for(var i = 0; i < quiz.questions.length; i++) { %>
+        <li class="transition vertical">
+            <section class="header" style="background-image: url(<%= quiz.questions[i].image %>);">
+                <h2><%= quiz.questions[i].title %></h2>
+            </section>
+            <section class="content">
+                <ul class="answers">
+                	<% for (var j = 0; j < quiz.questions[i].choices.length; j++) { %>
+                    <li data-answer="<%= quiz.questions[i].choices[j].value %>">
+                        <button><%= quiz.questions[i].choices[j].description %></button>
+                    </li>
+                    <% } %>
+                </ul>
+            </section>
+        </li>
+        <% } %>
+
+        <!-- Results -->
+        <li class="transition horizontal results">
+            <section id="resultHeader" class="header">
+                <h2 id="quizResultTitle"></h2>
+            </section>
+            <section class="content">
+                <div id="quizResultContents">
+                </div>
+                <div class="social">
+                    <ul class="social-toolbar">
+                        <li class="share-facebook"><span class="fa fa-facebook"></span>
+                        </li>
+                        <li class="share-pinterest"><span class="fa fa-pinterest"></span>
+                        </li>
+                        <li class="share-twitter"><span class="fa fa-twitter"></span>
+                        </li>
+                    </ul>
+                </div>
+                <button id="retakeQuizButton"><%= quiz.restartPrompt %></button>
+            </section>
+        </li>
+    </ul>
+</div>
+
+
+<script type="text/javascript" src="/js/social-sharing/social.js"></script>
+<script type="text/javascript" src="/js/QuizView.js"></script>
+<script type="text/javascript">app.QuizView.init('.socialscript', "<%= quiz._id %>", true);</script>
+
+<% } %>

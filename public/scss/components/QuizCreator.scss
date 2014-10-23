@@ -60,10 +60,6 @@ $lightBlue: rgb(52, 182, 255);
 		  		width: 100%;
 		  		text-align: center;
 		  	}
-
-			.thumb {
-			  background-image: url('http://placehold.it/150x150');
-			}
 		  }
 		  
 		  .thumb {
@@ -74,6 +70,7 @@ $lightBlue: rgb(52, 182, 255);
 		  
 			background-image: url('http://placehold.it/150x150');
 			background-size: cover;
+			background-position: center;
 			
 			span {
 			  position: absolute;

@@ -51,7 +51,6 @@ $shadow-height: 3px;
     border-radius: 50%;
     
     @media screen and (max-width: $breakpoint) {
-      margin: 0;
       width: $touch-size;
     }
     

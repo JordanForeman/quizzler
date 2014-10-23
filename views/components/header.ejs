@@ -2,11 +2,17 @@
 <html>
 <head>
 	<title>Quizzler - The Best Quiz Creation Engine</title>
+
+	<%if (typeof noBS == 'undefined' || noBS == false) { %>
 	<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css"> <!-- load bootstrap css -->
+	<% } %>
+
+	<%if (typeof noFA == 'undefined' || noFA == false) { %>
 	<link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css"> <!-- load fontawesome -->
+	<% } %>
 
 	<%if (typeof pageType != 'undefined') { %>
-	<link rel="stylesheet" href="/css/pages/<%= pageType %>" type="text/css"/>
+	<link rel="stylesheet" href="/css/components/<%= pageType %>.css" type="text/css"/>
 	<% } %>
 
 	<style>

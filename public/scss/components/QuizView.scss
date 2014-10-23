@@ -51,13 +51,20 @@ h1, h2, h3 {
 
 .transition {
   display: none;
-  
-  height: 100%;
   width: 100%;
   border: 1px solid #AAA;
   
   .header {
     color: WHITE;
+    background-color: #000;
+    background-size: cover;
+    background-position: center;
+
+    h1, h2 {
+      position: absolute;
+      bottom: 0;
+      padding: 0 10px;
+    }
   }
   
   &.active {
@@ -68,41 +75,55 @@ h1, h2, h3 {
     position: relative;
     padding: 20px 10px;
     overflow: hidden;
+    min-height: 200px;
+  }
+
+  // Landing and Results only
+  &:first-of-type, &:last-of-type {
+    .content{padding-bottom: 200px;}
   }
   
   * {
     transition: all .2s linear;
   }
-  
-  &.horizontal {
-    .header, .content {
-      float: left;
-      width: 50%;
-      height: 100%;
-    }
-  
-    &.closing, &.opening {
-      .header {width: 0; }
-      .content {width: 100%;}
-    }
+
+  &.closing, &.opening {
+    .header {height: 0; min-height: 0;}
+    .content {height: 100%;}
   }
-  
-  &.vertical {
-    .header, .content {
-      width: 100%;
-      height: 50%;
+
+  @media screen and (min-width: 650px) {  
+
+    height: 100%;
+
+    .content:first-of-type, .content:last-of-type {
+      padding-bottom: 0;
+    }
+
+    &.horizontal {
+      .header, .content {
+        float: left;
+        width: 50%;
+        height: 100%;
+      }
+    
+      &.closing, &.opening {
+        .header {width: 0; }
+        .content {width: 100%;}
+      }
     }
     
-    &.closing, &.opening {
-      .header {height: 0;}
-      .content {height: 100%;}
+    &.vertical {
+      .header, .content {
+        width: 100%;
+        height: 50%;
+      }
+      
+      &.closing, &.opening {
+        .header {height: 0;}
+        .content {height: 100%;}
+      }
     }
-  }
-  
-  .header {
-    background-color: #000;
-    background-size: cover;
-    background-position: center;
   }
 }
 
@@ -122,10 +143,10 @@ h1, h2, h3 {
   
   li {
     flex-grow: 1;
-    width: 50%;
+    width: 90%;
     
-    @media screen and (max-width: 420px) {
-      width: 100%;
+    @media screen and (min-width: 650px) {
+      width: 50%;
     }
     
     button {

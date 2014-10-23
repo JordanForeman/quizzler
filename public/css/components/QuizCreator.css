@@ -1,84 +1,125 @@
+/* line 3, ../../scss/components/QuizCreator.scss */
 #quizEditor {
   counter-reset: question;
   display: flex;
   flex-wrap: nowrap;
-  justify-content: flex-start; }
-  #quizEditor hr {
-    margin: 10px 0; }
-  #quizEditor .modal {
-    display: none; }
-  #quizEditor .editor-panel {
-    display: inline-block; }
-    #quizEditor .editor-panel.editor-panel-slides .slides {
-      list-style-type: none;
-      padding: 0 10px; }
-      #quizEditor .editor-panel.editor-panel-slides .slides .slide {
-        cursor: pointer;
-        position: relative;
-        display: block;
-        padding: 5px;
-        margin-bottom: 10px;
-        font-size: .8em;
-        color: WHITE;
-        border: 2px solid transparent; }
-        #quizEditor .editor-panel.editor-panel-slides .slides .slide.slide-active {
-          border-color: #34b6ff; }
-          #quizEditor .editor-panel.editor-panel-slides .slides .slide.slide-active .thumb:before {
-            background: rgba(0, 0, 0, 0); }
-        #quizEditor .editor-panel.editor-panel-slides .slides .slide:not(.slide-active):hover {
-          border-color: #9adbff; }
-          #quizEditor .editor-panel.editor-panel-slides .slides .slide:not(.slide-active):hover .thumb:before {
-            background: rgba(0, 0, 0, 0); }
-        #quizEditor .editor-panel.editor-panel-slides .slides .slide.slide-button {
-          background: #CCC; }
-          #quizEditor .editor-panel.editor-panel-slides .slides .slide.slide-button span {
-            font-size: 9em;
-            color: #888;
-            width: 100%;
-            text-align: center; }
-          #quizEditor .editor-panel.editor-panel-slides .slides .slide.slide-button .thumb {
-            background-image: url("http://placehold.it/150x150"); }
-        #quizEditor .editor-panel.editor-panel-slides .slides .slide .thumb {
-          position: relative;
-          height: 100px;
-          width: 100px;
-          background-image: url("http://placehold.it/150x150");
-          background-size: cover; }
-          #quizEditor .editor-panel.editor-panel-slides .slides .slide .thumb span {
-            position: absolute;
-            display: block;
-            bottom: 5px;
-            left: 5px; }
-          #quizEditor .editor-panel.editor-panel-slides .slides .slide .thumb:before {
-            content: '';
-            display: block;
-            height: 100%;
-            width: 100%;
-            background: rgba(0, 0, 0, 0.5);
-            transition: background .2s linear; }
-      #quizEditor .editor-panel.editor-panel-slides .slides .questions {
-        max-height: 550px;
-        overflow-y: scroll;
-        box-shadow: inset 0 -2px 5px #CCC;
-        margin-bottom: 10px;
-        border: 1px solid #CCC;
-        background: #F1F1F1; }
-        #quizEditor .editor-panel.editor-panel-slides .slides .questions .slide:after {
-          counter-increment: question;
-          content: counter(question);
-          position: absolute;
-          top: 10px;
-          left: 10px; }
-    #quizEditor .editor-panel.editor-panel-editor {
-      width: 80%; }
-      #quizEditor .editor-panel.editor-panel-editor > div img {
-        display: block;
-        margin: 0 auto;
-        padding: 10px;
-        border: 1px solid #CCC; }
-      #quizEditor .editor-panel.editor-panel-editor > div:not(.editor-active) {
-        display: none; }
+  justify-content: flex-start;
+}
+/* line 12, ../../scss/components/QuizCreator.scss */
+#quizEditor hr {
+  margin: 10px 0;
+}
+/* line 16, ../../scss/components/QuizCreator.scss */
+#quizEditor .modal {
+  display: none;
+}
+/* line 20, ../../scss/components/QuizCreator.scss */
+#quizEditor .editor-panel {
+  display: inline-block;
+}
+/* line 26, ../../scss/components/QuizCreator.scss */
+#quizEditor .editor-panel.editor-panel-slides .slides {
+  list-style-type: none;
+  padding: 0 10px;
+}
+/* line 30, ../../scss/components/QuizCreator.scss */
+#quizEditor .editor-panel.editor-panel-slides .slides .slide {
+  cursor: pointer;
+  position: relative;
+  display: block;
+  padding: 5px;
+  margin-bottom: 10px;
+  font-size: .8em;
+  color: WHITE;
+  border: 2px solid transparent;
+}
+/* line 41, ../../scss/components/QuizCreator.scss */
+#quizEditor .editor-panel.editor-panel-slides .slides .slide.slide-active {
+  border-color: #34b6ff;
+}
+/* line 42, ../../scss/components/QuizCreator.scss */
+#quizEditor .editor-panel.editor-panel-slides .slides .slide.slide-active .thumb:before {
+  background: rgba(0, 0, 0, 0);
+}
+/* line 47, ../../scss/components/QuizCreator.scss */
+#quizEditor .editor-panel.editor-panel-slides .slides .slide:not(.slide-active):hover {
+  border-color: #9adbff;
+}
+/* line 49, ../../scss/components/QuizCreator.scss */
+#quizEditor .editor-panel.editor-panel-slides .slides .slide:not(.slide-active):hover .thumb:before {
+  background: rgba(0, 0, 0, 0);
+}
+/* line 53, ../../scss/components/QuizCreator.scss */
+#quizEditor .editor-panel.editor-panel-slides .slides .slide.slide-button {
+  background: #CCC;
+}
+/* line 57, ../../scss/components/QuizCreator.scss */
+#quizEditor .editor-panel.editor-panel-slides .slides .slide.slide-button span {
+  font-size: 9em;
+  color: #888;
+  width: 100%;
+  text-align: center;
+}
+/* line 65, ../../scss/components/QuizCreator.scss */
+#quizEditor .editor-panel.editor-panel-slides .slides .slide .thumb {
+  position: relative;
+  height: 100px;
+  width: 100px;
+  background-image: url("http://placehold.it/150x150");
+  background-size: cover;
+  background-position: center;
+}
+/* line 75, ../../scss/components/QuizCreator.scss */
+#quizEditor .editor-panel.editor-panel-slides .slides .slide .thumb span {
+  position: absolute;
+  display: block;
+  bottom: 5px;
+  left: 5px;
+}
+/* line 82, ../../scss/components/QuizCreator.scss */
+#quizEditor .editor-panel.editor-panel-slides .slides .slide .thumb:before {
+  content: '';
+  display: block;
+  height: 100%;
+  width: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  transition: background .2s linear;
+}
+/* line 98, ../../scss/components/QuizCreator.scss */
+#quizEditor .editor-panel.editor-panel-slides .slides .questions {
+  max-height: 550px;
+  overflow-y: scroll;
+  box-shadow: inset 0 -2px 5px #CCC;
+  margin-bottom: 10px;
+  border: 1px solid #CCC;
+  background: #F1F1F1;
+}
+/* line 106, ../../scss/components/QuizCreator.scss */
+#quizEditor .editor-panel.editor-panel-slides .slides .questions .slide:after {
+  counter-increment: question;
+  content: counter(question);
+  position: absolute;
+  top: 10px;
+  left: 10px;
+}
+/* line 119, ../../scss/components/QuizCreator.scss */
+#quizEditor .editor-panel.editor-panel-editor {
+  width: 80%;
+}
+/* line 124, ../../scss/components/QuizCreator.scss */
+#quizEditor .editor-panel.editor-panel-editor > div img {
+  display: block;
+  margin: 0 auto;
+  padding: 10px;
+  border: 1px solid #CCC;
+}
+/* line 131, ../../scss/components/QuizCreator.scss */
+#quizEditor .editor-panel.editor-panel-editor > div:not(.editor-active) {
+  display: none;
+}
 
+/* line 141, ../../scss/components/QuizCreator.scss */
 #addQuestionButton, #saveQuizButton {
   display: block;
-  margin: 0 auto 10px; }
+  margin: 0 auto 10px;
+}

@@ -1,5 +1,9 @@
 	<script type="text/javascript" src="/js/core.js"></script>
 
+	<%if (typeof pageType != 'undefined') { %>
+	<script type="text/javascript" src="/js/<%= pageType %>.js"></script>
+	<% } %>
+
 	</div>
 </body>
 </html>

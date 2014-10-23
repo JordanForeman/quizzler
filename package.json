@@ -1,6 +1,15 @@
 {
   "name": "quizzler",
+  "version": "0.0.1",
+  "description": "A simple REST driven quiz creation wizard",
   "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "http://github.com/jordanforeman/quizzler.git"
+  },
   "dependencies": {
     "express": "~4.0.0",
     "mongoose": "~3.6.13",
