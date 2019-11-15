@@ -3,8 +3,8 @@ var config = {
 		DB_PATH : process.env.MONGOHQ_URL || "mongodb://localhost/27017/DB",
 
 		FACEBOOK : {
-			CLIENT_ID 		: '670211293040806',
-			CLIENT_SECRET 	: '007688ba3bc825cfec329a4511152750',
+			CLIENT_ID 		: 'xxxxxxxxxxxxxxxxxxxxxxxxxxx',
+			CLIENT_SECRET 	: 'xxxxxxxxxxxxxxxxxxxxxxxxxxx',
 			CALLBACK_URL	: 'http://localhost:3000/auth/facebook/callback'
 		}
 	},
